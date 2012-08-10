@@ -1,0 +1,302 @@
+
+<!DOCTYPE html>
+
+
+<html>
+	<head>
+		<meta charset="utf-8">
+	    
+	    <title>CAPTCHA Helper &mdash; CodeIgniter 3.0-dev documentation</title>
+
+	    <link rel="stylesheet" href="../_static/asset/css/common.css" type="text/css" />
+	    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+	    <script type="text/javascript">
+	      var DOCUMENTATION_OPTIONS = {
+	        URL_ROOT:    '../',
+	        VERSION:     '3.0-dev',
+	        COLLAPSE_INDEX: false,
+	        FILE_SUFFIX: '.html',
+	        HAS_SOURCE:  true
+	      };
+	    </script>
+	    <script type="text/javascript" src="../_static/jquery.js"></script>
+	    <script type="text/javascript" src="../_static/underscore.js"></script>
+	    <script type="text/javascript" src="../_static/doctools.js"></script>
+	    <link rel="top" title="CodeIgniter 3.0-dev documentation" href="../index.html" />
+	    <link rel="up" title="Helpers" href="index.html" />
+	    <link rel="next" title="Cookie Helper" href="cookie_helper.html" />
+	    <link rel="prev" title="Array Helper" href="array_helper.html" /> 
+	</head>
+	<body>
+		<div id="table-contents">
+			<div class="toctree-wrapper compound">
+			<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">General Topics</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Libraries</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Helpers</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="array_helper.html">Array Helper</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">CAPTCHA Helper</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cookie_helper.html">Cookie Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="date_helper.html">Date Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directory_helper.html">Directory Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download_helper.html">Download Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email_helper.html">Email Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_helper.html">File Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_helper.html">Form Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html_helper.html">HTML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inflector_helper.html">Inflector Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language_helper.html">Language Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="number_helper.html">Number Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="path_helper.html">Path Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_helper.html">Security Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smiley_helper.html">Smiley Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="string_helper.html">String Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text_helper.html">Text Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography_helper.html">Typography Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="url_helper.html">URL Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xml_helper.html">XML Helper</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to CodeIgniter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DCO.html">Developer&#8217;s Certificate of Origin 1.1</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../DCO.html">Developer&#8217;s Certificate of Origin 1.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">Open Software License (&#8220;OSL&#8221;) v 3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license_afl.html">Academic Free License (&#8220;AFL&#8221;) v 3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/requirements.html">Server Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">Welcome to CodeIgniter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">General Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Libraries</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Helpers</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="array_helper.html">Array Helper</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">CAPTCHA Helper</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="cookie_helper.html">Cookie Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="date_helper.html">Date Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directory_helper.html">Directory Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download_helper.html">Download Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email_helper.html">Email Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_helper.html">File Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_helper.html">Form Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html_helper.html">HTML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inflector_helper.html">Inflector Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language_helper.html">Language Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="number_helper.html">Number Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="path_helper.html">Path Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_helper.html">Security Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smiley_helper.html">Smiley Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="string_helper.html">String Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text_helper.html">Text Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography_helper.html">Typography Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="url_helper.html">URL Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xml_helper.html">XML Helper</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">The Database Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/index.html">Writing CodeIgniter Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/quick_reference.html">Quick Reference Chart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/credits.html">Credits</a></li>
+</ul>
+
+			</div>
+		</div>
+
+		<div id="brand" class="ci">
+			<a href="http://codeigniter.com/"><img src="../_static/asset/img/ci-logo.gif" alt="CodeIgniter"></a>
+			<p>3.0-dev User Guide</p>
+		</div><!-- /#brand -->
+
+		<div id="header">
+			<form method="get" action="http://www.google.com/search">
+				<fieldset>
+					<input type="text" name="q" id="q" value="">
+					<input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />
+					<input class="grades" type="submit" value="search">
+				</fieldset>
+			</form>
+			<ul>
+				<li><a href="../index.html">User Guide Home</a>&nbsp;&nbsp; &rsaquo;</li>
+				<li><a href="index.html" accesskey="U">Helpers</a>&nbsp;&nbsp;  &rsaquo;</li>
+				<li><strong>CAPTCHA Helper</strong></li>
+			</ul>
+		</div><!-- /#header -->
+
+		<div class="section" id="content">
+			<div class="section" id="captcha-helper">
+<h1><a class="toc-backref" href="#id1">CAPTCHA Helper</a><a class="headerlink" href="#captcha-helper" title="Permalink to this headline">¶</a></h1>
+<p>The CAPTCHA Helper file contains functions that assist in creating
+CAPTCHA images.</p>
+<div class="contents topic" id="page-contents">
+<p class="topic-title first">Page Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#captcha-helper" id="id1">CAPTCHA Helper</a><ul>
+<li><a class="reference internal" href="#loading-this-helper" id="id2">Loading this Helper</a></li>
+<li><a class="reference internal" href="#create-captcha-data" id="id3">create_captcha($data)</a><ul>
+<li><a class="reference internal" href="#using-the-captcha-helper" id="id4">Using the CAPTCHA helper</a></li>
+<li><a class="reference internal" href="#adding-a-database" id="id5">Adding a Database</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="loading-this-helper">
+<h2><a class="toc-backref" href="#id2">Loading this Helper</a><a class="headerlink" href="#loading-this-helper" title="Permalink to this headline">¶</a></h2>
+<p>This helper is loaded using the following code</p>
+<div class="highlight-ci"><pre>$this-&gt;load-&gt;helper('captcha');</pre>
+</div>
+<p>The following functions are available:</p>
+</div>
+<div class="section" id="create-captcha-data">
+<h2><a class="toc-backref" href="#id3">create_captcha($data)</a><a class="headerlink" href="#create-captcha-data" title="Permalink to this headline">¶</a></h2>
+<p>Takes an array of information to generate the CAPTCHA as input and
+creates the image to your specifications, returning an array of
+associative data about the image.</p>
+<dl class="method">
+<dt>
+<tt class="descname">function create_captcha($data = '', $img_path = '', $img_url = '', $font_path = '')</tt></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>$data</strong> (<em>array</em>) &#8211; array of data for the CAPTCHA</li>
+<li><strong>$img_path</strong> (<em>string</em>) &#8211; path to create the image in</li>
+<li><strong>$img_url</strong> (<em>string</em>) &#8211; URL to the CAPTCHA image folder</li>
+<li><strong>$font_path</strong> (<em>string</em>) &#8211; server path to font</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">array(&#8216;word&#8217; =&gt; $word, &#8216;time&#8217; =&gt; $now, &#8216;image&#8217; =&gt; $img)</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<div class="highlight-ci"><pre>[array] (
+        'image' =&gt; IMAGE TAG
+        'time'  =&gt; TIMESTAMP (in microtime)
+        'word'  =&gt; CAPTCHA WORD )</pre>
+</div>
+<p>The &#8220;image&#8221; is the actual image tag:</p>
+<div class="highlight-ci"><pre>&lt;img src="http://example.com/captcha/12345.jpg" width="140" height="50" /&gt;</pre>
+</div>
+<p>The &#8220;time&#8221; is the micro timestamp used as the image name without the
+file extension. It will be a number like this: 1139612155.3422</p>
+<p>The &#8220;word&#8221; is the word that appears in the captcha image, which if not
+supplied to the function, will be a random string.</p>
+<div class="section" id="using-the-captcha-helper">
+<h3><a class="toc-backref" href="#id4">Using the CAPTCHA helper</a><a class="headerlink" href="#using-the-captcha-helper" title="Permalink to this headline">¶</a></h3>
+<p>Once loaded you can generate a captcha like this</p>
+<div class="highlight-ci"><pre>$vals = array(
+        'word'       =&gt; 'Random word',
+        'img_path'   =&gt; './captcha/',
+        'img_url'    =&gt; 'http://example.com/captcha/',
+        'font_path'  =&gt; './path/to/fonts/texb.ttf',
+        'img_width'  =&gt; '150',
+        'img_height' =&gt; 30,
+        'expiration' =&gt; 7200
+);
+
+$cap = create_captcha($vals); echo $cap['image'];</pre>
+</div>
+<ul class="simple">
+<li>The captcha function requires the GD image library.</li>
+<li>Only the img_path and img_url are required.</li>
+<li>If a &#8220;word&#8221; is not supplied, the function will generate a random
+ASCII string. You might put together your own word library that you
+can draw randomly from.</li>
+<li>If you do not specify a path to a TRUE TYPE font, the native ugly GD
+font will be used.</li>
+<li>The &#8220;captcha&#8221; folder must be writable (666, or 777)</li>
+<li>The &#8220;expiration&#8221; (in seconds) signifies how long an image will remain
+in the captcha folder before it will be deleted. The default is two
+hours.</li>
+</ul>
+</div>
+<div class="section" id="adding-a-database">
+<h3><a class="toc-backref" href="#id5">Adding a Database</a><a class="headerlink" href="#adding-a-database" title="Permalink to this headline">¶</a></h3>
+<p>In order for the captcha function to prevent someone from submitting,
+you will need to add the information returned from create_captcha()
+function to your database. Then, when the data from the form is
+submitted by the user you will need to verify that the data exists in
+the database and has not expired.</p>
+<p>Here is a table prototype</p>
+<div class="highlight-ci"><pre>CREATE TABLE captcha (
+        captcha_id bigint(13) unsigned NOT NULL auto_increment,
+        captcha_time int(10) unsigned NOT NULL,
+        ip_address varchar(16) default '0' NOT NULL,
+        word varchar(20) NOT NULL,
+        PRIMARY KEY `captcha_id` (`captcha_id`),
+        KEY `word` (`word`)
+);</pre>
+</div>
+<p>Here is an example of usage with a database. On the page where the
+CAPTCHA will be shown you&#8217;ll have something like this</p>
+<div class="highlight-ci"><pre>$this-&gt;load-&gt;helper('captcha');
+$vals = array(
+        'img_path'      =&gt; './captcha/',
+        'img_url'       =&gt; 'http://example.com/captcha/'
+);
+
+$cap = create_captcha($vals);
+$data = array(
+        'captcha_time'  =&gt; $cap['time'],
+        'ip_address'    =&gt; $this-&gt;input-&gt;ip_address(),
+        'word'          =&gt; $cap['word']
+);
+
+$query = $this-&gt;db-&gt;insert_string('captcha', $data);
+$this-&gt;db-&gt;query($query);
+
+echo 'Submit the word you see below:';
+echo $cap['image'];
+echo '&lt;input type="text" name="captcha" value="" /&gt;';</pre>
+</div>
+<p>Then, on the page that accepts the submission you&#8217;ll have something like
+this</p>
+<div class="highlight-ci"><pre>// First, delete old captchas
+$expiration = time() - 7200; // Two hour limit
+$this-&gt;db-&gt;where('captcha_time &lt; ', $expiration)
+         -&gt;delete('captcha');
+
+// Then see if a captcha exists:
+$sql = "SELECT COUNT(*) AS count FROM captcha WHERE word = ? AND ip_address = ? AND captcha_time &gt; ?";
+$binds = array($_POST['captcha'], $this-&gt;input-&gt;ip_address(), $expiration);
+$query = $this-&gt;db-&gt;query($sql, $binds);
+$row = $query-&gt;row();
+
+if ($row-&gt;count == 0)
+{
+        echo "You must submit the word that appears in the image";
+}</pre>
+</div>
+</div>
+</div>
+</div>
+
+		</div>
+
+		<!-- {user_guide_comments} -->
+					
+		<div id="footer">
+			<p class="top"><a href="#header" title="Return to top">Return to top</a></p>
+			<p><a href="">CodeIgniter</a> &ndash; Copyright &copy; 2012, EllisLab, Inc.</a></p>
+		</div><!-- /#footer -->
+	</body>
+</html>

@@ -1,0 +1,352 @@
+
+<!DOCTYPE html>
+
+
+<html>
+	<head>
+		<meta charset="utf-8">
+	    
+	    <title>Views &mdash; CodeIgniter 3.0-dev documentation</title>
+
+	    <link rel="stylesheet" href="../_static/asset/css/common.css" type="text/css" />
+	    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+	    <script type="text/javascript">
+	      var DOCUMENTATION_OPTIONS = {
+	        URL_ROOT:    '../',
+	        VERSION:     '3.0-dev',
+	        COLLAPSE_INDEX: false,
+	        FILE_SUFFIX: '.html',
+	        HAS_SOURCE:  true
+	      };
+	    </script>
+	    <script type="text/javascript" src="../_static/jquery.js"></script>
+	    <script type="text/javascript" src="../_static/underscore.js"></script>
+	    <script type="text/javascript" src="../_static/doctools.js"></script>
+	    <link rel="top" title="CodeIgniter 3.0-dev documentation" href="../index.html" />
+	    <link rel="up" title="General Topics" href="index.html" />
+	    <link rel="next" title="Models" href="models.html" />
+	    <link rel="prev" title="Reserved Names" href="reserved_names.html" /> 
+	</head>
+	<body>
+		<div id="table-contents">
+			<div class="toctree-wrapper compound">
+			<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">General Topics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="urls.html">CodeIgniter URLs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html">Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reserved_names.html">Reserved Names</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Views</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="models.html">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html">Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="libraries.html">Using CodeIgniter Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_libraries.html">Creating Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drivers.html">Using CodeIgniter Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_drivers.html">Creating Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_classes.html">Creating Core System Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ancillary_classes.html">Creating Ancillary Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hooks.html">Hooks - Extending the Framework Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autoloader.html">Auto-loading Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common_functions.html">Common Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="routing.html">URI Routing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="errors.html">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profiling.html">Profiling Your Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">Running via the CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="managing_apps.html">Managing your Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environments.html">Handling Multiple Environments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alternative_php.html">Alternate PHP Syntax for View Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="styleguide.html">PHP Style Guide</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Libraries</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to CodeIgniter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DCO.html">Developer&#8217;s Certificate of Origin 1.1</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../DCO.html">Developer&#8217;s Certificate of Origin 1.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">Open Software License (&#8220;OSL&#8221;) v 3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license_afl.html">Academic Free License (&#8220;AFL&#8221;) v 3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="requirements.html">Server Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="welcome.html">Welcome to CodeIgniter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation Instructions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">General Topics</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="urls.html">CodeIgniter URLs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controllers.html">Controllers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reserved_names.html">Reserved Names</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Views</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="models.html">Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html">Helpers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="libraries.html">Using CodeIgniter Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_libraries.html">Creating Libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="drivers.html">Using CodeIgniter Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="creating_drivers.html">Creating Drivers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="core_classes.html">Creating Core System Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ancillary_classes.html">Creating Ancillary Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="hooks.html">Hooks - Extending the Framework Core</a></li>
+<li class="toctree-l2"><a class="reference internal" href="autoloader.html">Auto-loading Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="common_functions.html">Common Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="routing.html">URI Routing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="errors.html">Error Handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="profiling.html">Profiling Your Application</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cli.html">Running via the CLI</a></li>
+<li class="toctree-l2"><a class="reference internal" href="managing_apps.html">Managing your Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="environments.html">Handling Multiple Environments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alternative_php.html">Alternate PHP Syntax for View Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="styleguide.html">PHP Style Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">The Database Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/index.html">Writing CodeIgniter Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quick_reference.html">Quick Reference Chart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="credits.html">Credits</a></li>
+</ul>
+
+			</div>
+		</div>
+
+		<div id="brand" class="ci">
+			<a href="http://codeigniter.com/"><img src="../_static/asset/img/ci-logo.gif" alt="CodeIgniter"></a>
+			<p>3.0-dev User Guide</p>
+		</div><!-- /#brand -->
+
+		<div id="header">
+			<form method="get" action="http://www.google.com/search">
+				<fieldset>
+					<input type="text" name="q" id="q" value="">
+					<input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />
+					<input class="grades" type="submit" value="search">
+				</fieldset>
+			</form>
+			<ul>
+				<li><a href="../index.html">User Guide Home</a>&nbsp;&nbsp; &rsaquo;</li>
+				<li><a href="index.html" accesskey="U">General Topics</a>&nbsp;&nbsp;  &rsaquo;</li>
+				<li><strong>Views</strong></li>
+			</ul>
+		</div><!-- /#header -->
+
+		<div class="section" id="content">
+			<div class="section" id="views">
+<h1>Views<a class="headerlink" href="#views" title="Permalink to this headline">¶</a></h1>
+<p>A view is simply a web page, or a page fragment, like a header, footer,
+sidebar, etc. In fact, views can flexibly be embedded within other views
+(within other views, etc., etc.) if you need this type of hierarchy.</p>
+<p>Views are never called directly, they must be loaded by a
+<a class="reference internal" href="controllers.html"><em>controller</em></a>. Remember that in an MVC framework, the
+Controller acts as the traffic cop, so it is responsible for fetching a
+particular view. If you have not read the
+<a class="reference internal" href="controllers.html"><em>Controllers</em></a> page you should do so before
+continuing.</p>
+<p>Using the example controller you created in the
+<a class="reference internal" href="controllers.html"><em>controller</em></a> page, let&#8217;s add a view to it.</p>
+<div class="section" id="creating-a-view">
+<h2>Creating a View<a class="headerlink" href="#creating-a-view" title="Permalink to this headline">¶</a></h2>
+<p>Using your text editor, create a file called blogview.php, and put this
+in it:</p>
+<div class="highlight-ci"><pre>&lt;html&gt;
+&lt;head&gt;
+        &lt;title&gt;My Blog&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+        &lt;h1&gt;Welcome to my Blog!&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+</div>
+<p>Then save the file in your application/views/ folder.</p>
+</div>
+<div class="section" id="loading-a-view">
+<h2>Loading a View<a class="headerlink" href="#loading-a-view" title="Permalink to this headline">¶</a></h2>
+<p>To load a particular view file you will use the following function:</p>
+<div class="highlight-ci"><pre>$this-&gt;load-&gt;view('name');</pre>
+</div>
+<p>Where name is the name of your view file. Note: The .php file extension
+does not need to be specified unless you use something other than .php.</p>
+<p>Now, open the controller file you made earlier called blog.php, and
+replace the echo statement with the view loading function:</p>
+<div class="highlight-ci"><pre>&lt;?php
+class Blog extends CI_Controller {
+
+        public function index()
+        {
+                $this-&gt;load-&gt;view('blogview');
+        }
+}
+?&gt;</pre>
+</div>
+<p>If you visit your site using the URL you did earlier you should see your
+new view. The URL was similar to this:</p>
+<div class="highlight-ci"><pre>example.com/index.php/blog/</pre>
+</div>
+</div>
+<div class="section" id="loading-multiple-views">
+<h2>Loading multiple views<a class="headerlink" href="#loading-multiple-views" title="Permalink to this headline">¶</a></h2>
+<p>CodeIgniter will intelligently handle multiple calls to
+$this-&gt;load-&gt;view from within a controller. If more than one call
+happens they will be appended together. For example, you may wish to
+have a header view, a menu view, a content view, and a footer view. That
+might look something like this:</p>
+<div class="highlight-ci"><pre>&lt;?php
+
+class Page extends CI_Controller {
+
+        public function index()
+        {
+                $data['page_title'] = 'Your title';
+                $this-&gt;load-&gt;view('header');
+                $this-&gt;load-&gt;view('menu');
+                $this-&gt;load-&gt;view('content', $data);
+                $this-&gt;load-&gt;view('footer');
+        }
+
+}
+?&gt;</pre>
+</div>
+<p>In the example above, we are using &#8220;dynamically added data&#8221;, which you
+will see below.</p>
+</div>
+<div class="section" id="storing-views-within-sub-folders">
+<h2>Storing Views within Sub-folders<a class="headerlink" href="#storing-views-within-sub-folders" title="Permalink to this headline">¶</a></h2>
+<p>Your view files can also be stored within sub-folders if you prefer that
+type of organization. When doing so you will need to include the folder
+name loading the view. Example:</p>
+<div class="highlight-ci"><pre>$this-&gt;load-&gt;view('folder_name/file_name');</pre>
+</div>
+</div>
+<div class="section" id="adding-dynamic-data-to-the-view">
+<h2>Adding Dynamic Data to the View<a class="headerlink" href="#adding-dynamic-data-to-the-view" title="Permalink to this headline">¶</a></h2>
+<p>Data is passed from the controller to the view by way of an <strong>array</strong> or
+an <strong>object</strong> in the second parameter of the view loading function. Here
+is an example using an array:</p>
+<div class="highlight-ci"><pre>$data = array(
+               'title' =&gt; 'My Title',
+               'heading' =&gt; 'My Heading',
+               'message' =&gt; 'My Message'
+          );
+
+$this-&gt;load-&gt;view('blogview', $data);</pre>
+</div>
+<p>And here&#8217;s an example using an object:</p>
+<div class="highlight-ci"><pre>$data = new Someclass();
+$this-&gt;load-&gt;view('blogview', $data);</pre>
+</div>
+<p>Note: If you use an object, the class variables will be turned into
+array elements.</p>
+<p>Let&#8217;s try it with your controller file. Open it add this code:</p>
+<div class="highlight-ci"><pre>&lt;?php
+class Blog extends CI_Controller {
+
+        public function index()
+        {
+                $data['title'] = "My Real Title";
+                $data['heading'] = "My Real Heading";
+
+                $this-&gt;load-&gt;view('blogview', $data);
+        }
+}
+?&gt;</pre>
+</div>
+<p>Now open your view file and change the text to variables that correspond
+to the array keys in your data:</p>
+<div class="highlight-ci"><pre>&lt;html&gt;
+&lt;head&gt;
+        &lt;title&gt;&lt;?php echo $title;?&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+        &lt;h1&gt;&lt;?php echo $heading;?&gt;&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+</div>
+<p>Then load the page at the URL you&#8217;ve been using and you should see the
+variables replaced.</p>
+</div>
+<div class="section" id="creating-loops">
+<h2>Creating Loops<a class="headerlink" href="#creating-loops" title="Permalink to this headline">¶</a></h2>
+<p>The data array you pass to your view files is not limited to simple
+variables. You can pass multi dimensional arrays, which can be looped to
+generate multiple rows. For example, if you pull data from your database
+it will typically be in the form of a multi-dimensional array.</p>
+<p>Here&#8217;s a simple example. Add this to your controller:</p>
+<div class="highlight-ci"><pre>&lt;?php
+class Blog extends CI_Controller {
+
+        public function index()
+        {
+                $data['todo_list'] = array('Clean House', 'Call Mom', 'Run Errands');
+
+                $data['title'] = "My Real Title";
+                $data['heading'] = "My Real Heading";
+
+                $this-&gt;load-&gt;view('blogview', $data);
+        }
+}
+?&gt;</pre>
+</div>
+<p>Now open your view file and create a loop:</p>
+<div class="highlight-ci"><pre>&lt;html&gt;
+&lt;head&gt;
+        &lt;title&gt;&lt;?php echo $title;?&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+        &lt;h1&gt;&lt;?php echo $heading;?&gt;&lt;/h1&gt;
+
+        &lt;h3&gt;My Todo List&lt;/h3&gt;
+
+        &lt;ul&gt;
+        &lt;?php foreach ($todo_list as $item):?&gt;
+
+                &lt;li&gt;&lt;?php echo $item;?&gt;&lt;/li&gt;
+
+        &lt;?php endforeach;?&gt;
+        &lt;/ul&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">You&#8217;ll notice that in the example above we are using PHP&#8217;s
+alternative syntax. If you are not familiar with it you can read about
+it <a class="reference internal" href="alternative_php.html"><em>here</em></a>.</p>
+</div>
+</div>
+<div class="section" id="returning-views-as-data">
+<h2>Returning views as data<a class="headerlink" href="#returning-views-as-data" title="Permalink to this headline">¶</a></h2>
+<p>There is a third <strong>optional</strong> parameter lets you change the behavior of
+the function so that it returns data as a string rather than sending it
+to your browser. This can be useful if you want to process the data in
+some way. If you set the parameter to true (boolean) it will return
+data. The default behavior is false, which sends it to your browser.
+Remember to assign it to a variable if you want the data returned:</p>
+<div class="highlight-ci"><pre>$string = $this-&gt;load-&gt;view('myfile', '', true);</pre>
+</div>
+</div>
+</div>
+
+		</div>
+
+		<!-- {user_guide_comments} -->
+					
+		<div id="footer">
+			<p class="top"><a href="#header" title="Return to top">Return to top</a></p>
+			<p><a href="">CodeIgniter</a> &ndash; Copyright &copy; 2012, EllisLab, Inc.</a></p>
+		</div><!-- /#footer -->
+	</body>
+</html>

@@ -1,0 +1,17 @@
+{
+    "hash": "e723f9060765a6950e5ec29670c399b2",
+    "packages": [
+        {
+            "package": "jamierumbelow/codeigniter-base-model",
+            "version": "v1.3.0"
+        }
+    ],
+    "packages-dev": null,
+    "aliases": [
+
+    ],
+    "minimum-stability": "stable",
+    "stability-flags": [
+
+    ]
+}

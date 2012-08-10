@@ -1,0 +1,614 @@
+
+<!DOCTYPE html>
+
+
+<html>
+	<head>
+		<meta charset="utf-8">
+	    
+	    <title>Form Helper &mdash; CodeIgniter 3.0-dev documentation</title>
+
+	    <link rel="stylesheet" href="../_static/asset/css/common.css" type="text/css" />
+	    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+	    <script type="text/javascript">
+	      var DOCUMENTATION_OPTIONS = {
+	        URL_ROOT:    '../',
+	        VERSION:     '3.0-dev',
+	        COLLAPSE_INDEX: false,
+	        FILE_SUFFIX: '.html',
+	        HAS_SOURCE:  true
+	      };
+	    </script>
+	    <script type="text/javascript" src="../_static/jquery.js"></script>
+	    <script type="text/javascript" src="../_static/underscore.js"></script>
+	    <script type="text/javascript" src="../_static/doctools.js"></script>
+	    <link rel="top" title="CodeIgniter 3.0-dev documentation" href="../index.html" />
+	    <link rel="up" title="Helpers" href="index.html" />
+	    <link rel="next" title="HTML Helper" href="html_helper.html" />
+	    <link rel="prev" title="File Helper" href="file_helper.html" /> 
+	</head>
+	<body>
+		<div id="table-contents">
+			<div class="toctree-wrapper compound">
+			<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">General Topics</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Libraries</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Helpers</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="array_helper.html">Array Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="captcha_helper.html">CAPTCHA Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookie_helper.html">Cookie Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="date_helper.html">Date Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directory_helper.html">Directory Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download_helper.html">Download Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email_helper.html">Email Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_helper.html">File Helper</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Form Helper</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="html_helper.html">HTML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inflector_helper.html">Inflector Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language_helper.html">Language Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="number_helper.html">Number Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="path_helper.html">Path Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_helper.html">Security Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smiley_helper.html">Smiley Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="string_helper.html">String Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text_helper.html">Text Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography_helper.html">Typography Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="url_helper.html">URL Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xml_helper.html">XML Helper</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to CodeIgniter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DCO.html">Developer&#8217;s Certificate of Origin 1.1</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../DCO.html">Developer&#8217;s Certificate of Origin 1.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">Open Software License (&#8220;OSL&#8221;) v 3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license_afl.html">Academic Free License (&#8220;AFL&#8221;) v 3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/requirements.html">Server Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">Welcome to CodeIgniter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">General Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Libraries</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Helpers</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="array_helper.html">Array Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="captcha_helper.html">CAPTCHA Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookie_helper.html">Cookie Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="date_helper.html">Date Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directory_helper.html">Directory Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download_helper.html">Download Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email_helper.html">Email Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_helper.html">File Helper</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Form Helper</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="html_helper.html">HTML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inflector_helper.html">Inflector Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language_helper.html">Language Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="number_helper.html">Number Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="path_helper.html">Path Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_helper.html">Security Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smiley_helper.html">Smiley Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="string_helper.html">String Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="text_helper.html">Text Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography_helper.html">Typography Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="url_helper.html">URL Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xml_helper.html">XML Helper</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">The Database Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/index.html">Writing CodeIgniter Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/quick_reference.html">Quick Reference Chart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/credits.html">Credits</a></li>
+</ul>
+
+			</div>
+		</div>
+
+		<div id="brand" class="ci">
+			<a href="http://codeigniter.com/"><img src="../_static/asset/img/ci-logo.gif" alt="CodeIgniter"></a>
+			<p>3.0-dev User Guide</p>
+		</div><!-- /#brand -->
+
+		<div id="header">
+			<form method="get" action="http://www.google.com/search">
+				<fieldset>
+					<input type="text" name="q" id="q" value="">
+					<input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />
+					<input class="grades" type="submit" value="search">
+				</fieldset>
+			</form>
+			<ul>
+				<li><a href="../index.html">User Guide Home</a>&nbsp;&nbsp; &rsaquo;</li>
+				<li><a href="index.html" accesskey="U">Helpers</a>&nbsp;&nbsp;  &rsaquo;</li>
+				<li><strong>Form Helper</strong></li>
+			</ul>
+		</div><!-- /#header -->
+
+		<div class="section" id="content">
+			<div class="section" id="form-helper">
+<h1><a class="toc-backref" href="#id1">Form Helper</a><a class="headerlink" href="#form-helper" title="Permalink to this headline">¶</a></h1>
+<p>The Form Helper file contains functions that assist in working with
+forms.</p>
+<div class="contents topic" id="page-contents">
+<p class="topic-title first">Page Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#form-helper" id="id1">Form Helper</a><ul>
+<li><a class="reference internal" href="#loading-this-helper" id="id2">Loading this Helper</a></li>
+<li><a class="reference internal" href="#form-open" id="id3">form_open()</a><ul>
+<li><a class="reference internal" href="#adding-attributes" id="id4">Adding Attributes</a></li>
+<li><a class="reference internal" href="#adding-hidden-input-fields" id="id5">Adding Hidden Input Fields</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#form-open-multipart" id="id6">form_open_multipart()</a></li>
+<li><a class="reference internal" href="#form-hidden" id="id7">form_hidden()</a></li>
+<li><a class="reference internal" href="#form-input" id="id8">form_input()</a></li>
+<li><a class="reference internal" href="#form-password" id="id9">form_password()</a></li>
+<li><a class="reference internal" href="#form-upload" id="id10">form_upload()</a></li>
+<li><a class="reference internal" href="#form-textarea" id="id11">form_textarea()</a></li>
+<li><a class="reference internal" href="#form-dropdown" id="id12">form_dropdown()</a></li>
+<li><a class="reference internal" href="#form-multiselect" id="id13">form_multiselect()</a></li>
+<li><a class="reference internal" href="#form-fieldset" id="id14">form_fieldset()</a></li>
+<li><a class="reference internal" href="#form-fieldset-close" id="id15">form_fieldset_close()</a></li>
+<li><a class="reference internal" href="#form-checkbox" id="id16">form_checkbox()</a></li>
+<li><a class="reference internal" href="#form-radio" id="id17">form_radio()</a></li>
+<li><a class="reference internal" href="#form-submit" id="id18">form_submit()</a></li>
+<li><a class="reference internal" href="#form-label" id="id19">form_label()</a></li>
+<li><a class="reference internal" href="#form-reset" id="id20">form_reset()</a></li>
+<li><a class="reference internal" href="#form-button" id="id21">form_button()</a></li>
+<li><a class="reference internal" href="#form-close" id="id22">form_close()</a></li>
+<li><a class="reference internal" href="#form-prep" id="id23">form_prep()</a></li>
+<li><a class="reference internal" href="#set-value" id="id24">set_value()</a></li>
+<li><a class="reference internal" href="#set-select" id="id25">set_select()</a></li>
+<li><a class="reference internal" href="#set-checkbox" id="id26">set_checkbox()</a></li>
+<li><a class="reference internal" href="#set-radio" id="id27">set_radio()</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="loading-this-helper">
+<h2><a class="toc-backref" href="#id2">Loading this Helper</a><a class="headerlink" href="#loading-this-helper" title="Permalink to this headline">¶</a></h2>
+<p>This helper is loaded using the following code</p>
+<div class="highlight-ci"><pre>$this-&gt;load-&gt;helper('form');</pre>
+</div>
+<p>The following functions are available:</p>
+</div>
+<div class="section" id="form-open">
+<h2><a class="toc-backref" href="#id3">form_open()</a><a class="headerlink" href="#form-open" title="Permalink to this headline">¶</a></h2>
+<p>Creates an opening form tag with a base URL <strong>built from your config preferences</strong>. It will optionally let you add form attributes and hidden input fields, and will always add the attribute accept-charset based on the charset value in your config file.</p>
+<p>The main benefit of using this tag rather than hard coding your own HTML is that it permits your site to be more portable in the event your URLs ever change.</p>
+<p>Here&#8217;s a simple example</p>
+<div class="highlight-ci"><pre>echo form_open('email/send');</pre>
+</div>
+<p>The above example would create a form that points to your base URL plus the &#8220;email/send&#8221; URI segments, like this</p>
+<div class="highlight-ci"><pre>&lt;form method="post" accept-charset="utf-8" action="http://example.com/index.php/email/send" /&gt;</pre>
+</div>
+<div class="section" id="adding-attributes">
+<h3><a class="toc-backref" href="#id4">Adding Attributes</a><a class="headerlink" href="#adding-attributes" title="Permalink to this headline">¶</a></h3>
+<p>Attributes can be added by passing an associative array to the second
+parameter, like this</p>
+<div class="highlight-ci"><pre>$attributes = array('class' =&gt; 'email', 'id' =&gt; 'myform');
+echo form_open('email/send', $attributes);</pre>
+</div>
+<p>The above example would create a form similar to this</p>
+<div class="highlight-ci"><pre>&lt;form method="post" accept-charset="utf-8" action="http://example.com/index.php/email/send" class="email" id="myform" /&gt;</pre>
+</div>
+</div>
+<div class="section" id="adding-hidden-input-fields">
+<h3><a class="toc-backref" href="#id5">Adding Hidden Input Fields</a><a class="headerlink" href="#adding-hidden-input-fields" title="Permalink to this headline">¶</a></h3>
+<p>Hidden fields can be added by passing an associative array to the third parameter, like this</p>
+<div class="highlight-ci"><pre> $hidden = array('username' =&gt; 'Joe', 'member_id' =&gt; '234');
+echo form_open('email/send', '', $hidden);</pre>
+</div>
+<p>The above example would create a form similar to this</p>
+<div class="highlight-ci"><pre>&lt;form method="post" accept-charset="utf-8" action="http://example.com/index.php/email/send"&gt;
+        &lt;input type="hidden" name="username" value="Joe" /&gt;
+        &lt;input type="hidden" name="member_id" value="234" /&gt;</pre>
+</div>
+</div>
+</div>
+<div class="section" id="form-open-multipart">
+<h2><a class="toc-backref" href="#id6">form_open_multipart()</a><a class="headerlink" href="#form-open-multipart" title="Permalink to this headline">¶</a></h2>
+<p>This function is absolutely identical to the <cite>form_open()</cite> tag above
+except that it adds a multipart attribute, which is necessary if you
+would like to use the form to upload files with.</p>
+</div>
+<div class="section" id="form-hidden">
+<h2><a class="toc-backref" href="#id7">form_hidden()</a><a class="headerlink" href="#form-hidden" title="Permalink to this headline">¶</a></h2>
+<p>Lets you generate hidden input fields. You can either submit a
+name/value string to create one field</p>
+<div class="highlight-ci"><pre>form_hidden('username', 'johndoe');
+// Would produce: &lt;input type="hidden" name="username" value="johndoe" /&gt;</pre>
+</div>
+<p>Or you can submit an associative array to create multiple fields</p>
+<div class="highlight-ci"><pre>$data = array(
+        'name'  =&gt; 'John Doe',
+        'email' =&gt; 'john@example.com',
+        'url'   =&gt; 'http://example.com'
+);
+
+echo form_hidden($data);
+
+/*
+        Would produce:
+        &lt;input type="hidden" name="name" value="John Doe" /&gt;
+        &lt;input type="hidden" name="email" value="john@example.com" /&gt;
+        &lt;input type="hidden" name="url" value="http://example.com" /&gt;
+*/</pre>
+</div>
+<p>Or pass an associative array to the value field.</p>
+<div class="highlight-ci"><pre>$data = array(
+        'name'  =&gt; 'John Doe',
+        'email' =&gt; 'john@example.com',
+        'url'   =&gt; 'http://example.com'
+);
+
+echo form_hidden('my_array', $data);
+
+/*
+        Would produce:
+        &lt;input type="hidden" name="my_array[name]" value="John Doe" /&gt;
+        &lt;input type="hidden" name="my_array[email]" value="john@example.com" /&gt;
+        &lt;input type="hidden" name="my_array[url]" value="http://example.com" /&gt;
+*/</pre>
+</div>
+<p>If you want to create hidden input fields with extra attributes</p>
+<div class="highlight-ci"><pre>$data = array(
+        'type'        =&gt; 'hidden',
+        'name'        =&gt; 'email',
+        'id'          =&gt; 'hiddenemail',
+        'value'       =&gt; 'john@example.com',
+        'class'       =&gt; 'hiddenemail'
+);
+
+echo form_input($data);
+
+/*
+        Would produce:
+
+        &lt;input type="hidden" name="email" value="john@example.com" id="hiddenemail" class="hiddenemail" /&gt;
+*/</pre>
+</div>
+</div>
+<div class="section" id="form-input">
+<h2><a class="toc-backref" href="#id8">form_input()</a><a class="headerlink" href="#form-input" title="Permalink to this headline">¶</a></h2>
+<p>Lets you generate a standard text input field. You can minimally pass
+the field name and value in the first and second parameter</p>
+<div class="highlight-ci"><pre>echo form_input('username', 'johndoe');</pre>
+</div>
+<p>Or you can pass an associative array containing any data you wish your
+form to contain</p>
+<div class="highlight-ci"><pre>$data = array(
+        'name'        =&gt; 'username',
+        'id'          =&gt; 'username',
+        'value'       =&gt; 'johndoe',
+        'maxlength'   =&gt; '100',
+        'size'        =&gt; '50',
+        'style'       =&gt; 'width:50%'
+);
+
+echo form_input($data);
+
+/*
+        Would produce:
+
+        &lt;input type="text" name="username" value="johndoe" id="username" maxlength="100" size="50" style="width:50%"  /&gt;
+*/</pre>
+</div>
+<p>If you would like your form to contain some additional data, like
+Javascript, you can pass it as a string in the third parameter</p>
+<div class="highlight-ci"><pre>$js = 'onClick="some_function()"';
+echo form_input('username', 'johndoe', $js);</pre>
+</div>
+</div>
+<div class="section" id="form-password">
+<h2><a class="toc-backref" href="#id9">form_password()</a><a class="headerlink" href="#form-password" title="Permalink to this headline">¶</a></h2>
+<p>This function is identical in all respects to the <cite>form_input()</cite> function above except that it uses the &#8220;password&#8221; input type.</p>
+</div>
+<div class="section" id="form-upload">
+<h2><a class="toc-backref" href="#id10">form_upload()</a><a class="headerlink" href="#form-upload" title="Permalink to this headline">¶</a></h2>
+<p>This function is identical in all respects to the <cite>form_input()</cite> function above except that it uses the &#8220;file&#8221; input type, allowing it to be used to upload files.</p>
+</div>
+<div class="section" id="form-textarea">
+<h2><a class="toc-backref" href="#id11">form_textarea()</a><a class="headerlink" href="#form-textarea" title="Permalink to this headline">¶</a></h2>
+<p>This function is identical in all respects to the <cite>form_input()</cite> function above except that it generates a &#8220;textarea&#8221; type. Note: Instead of the &#8220;maxlength&#8221; and &#8220;size&#8221; attributes in the above example, you will instead specify &#8220;rows&#8221; and &#8220;cols&#8221;.</p>
+</div>
+<div class="section" id="form-dropdown">
+<h2><a class="toc-backref" href="#id12">form_dropdown()</a><a class="headerlink" href="#form-dropdown" title="Permalink to this headline">¶</a></h2>
+<p>Lets you create a standard drop-down field. The first parameter will
+contain the name of the field, the second parameter will contain an
+associative array of options, and the third parameter will contain the
+value you wish to be selected. You can also pass an array of multiple
+items through the third parameter, and CodeIgniter will create a
+multiple select for you. Example</p>
+<div class="highlight-ci"><pre>$options = array(
+        'small'  =&gt; 'Small Shirt',
+        'med'    =&gt; 'Medium Shirt',
+        'large'   =&gt; 'Large Shirt',
+        'xlarge' =&gt; 'Extra Large Shirt',
+);
+
+$shirts_on_sale = array('small', 'large');
+echo form_dropdown('shirts', $options, 'large');
+
+/*
+        Would produce:
+
+        &lt;select name="shirts"&gt;
+                &lt;option value="small"&gt;Small Shirt&lt;/option&gt;
+                &lt;option value="med"&gt;Medium  Shirt&lt;/option&gt;
+                &lt;option value="large" selected="selected"&gt;Large Shirt&lt;/option&gt;
+                &lt;option value="xlarge"&gt;Extra Large Shirt&lt;/option&gt;
+        &lt;/select&gt;
+*/
+
+echo form_dropdown('shirts', $options, $shirts_on_sale);
+
+/*
+        Would produce:
+
+        &lt;select name="shirts" multiple="multiple"&gt;
+                &lt;option value="small" selected="selected"&gt;Small Shirt&lt;/option&gt;
+                &lt;option value="med"&gt;Medium  Shirt&lt;/option&gt;
+                &lt;option value="large" selected="selected"&gt;Large Shirt&lt;/option&gt;
+                &lt;option value="xlarge"&gt;Extra Large Shirt&lt;/option&gt;
+        &lt;/select&gt;
+*/</pre>
+</div>
+<p>If you would like the opening &lt;select&gt; to contain additional data, like
+an id attribute or JavaScript, you can pass it as a string in the fourth
+parameter</p>
+<div class="highlight-ci"><pre>$js = 'id="shirts" onChange="some_function();"';
+echo form_dropdown('shirts', $options, 'large', $js);</pre>
+</div>
+<p>If the array passed as $options is a multidimensional array,
+<cite>form_dropdown()</cite> will produce an &lt;optgroup&gt; with the array key as the
+label.</p>
+</div>
+<div class="section" id="form-multiselect">
+<h2><a class="toc-backref" href="#id13">form_multiselect()</a><a class="headerlink" href="#form-multiselect" title="Permalink to this headline">¶</a></h2>
+<p>Lets you create a standard multiselect field. The first parameter will
+contain the name of the field, the second parameter will contain an
+associative array of options, and the third parameter will contain the
+value or values you wish to be selected. The parameter usage is
+identical to using form_dropdown() above, except of course that the
+name of the field will need to use POST array syntax, e.g. foo[].</p>
+</div>
+<div class="section" id="form-fieldset">
+<h2><a class="toc-backref" href="#id14">form_fieldset()</a><a class="headerlink" href="#form-fieldset" title="Permalink to this headline">¶</a></h2>
+<p>Lets you generate fieldset/legend fields.</p>
+<div class="highlight-ci"><pre>echo form_fieldset('Address Information');
+echo "&lt;p&gt;fieldset content here&lt;/p&gt;\n";
+echo form_fieldset_close();
+
+/*
+        Produces:
+                &lt;fieldset&gt;
+                        &lt;legend&gt;Address Information&lt;/legend&gt;
+                                &lt;p&gt;form content here&lt;/p&gt;
+                &lt;/fieldset&gt;
+*/</pre>
+</div>
+<p>Similar to other functions, you can submit an associative array in the
+second parameter if you prefer to set additional attributes.</p>
+<div class="highlight-ci"><pre>$attributes = array(
+        'id' =&gt; 'address_info',
+        'class' =&gt; 'address_info'
+);
+
+echo form_fieldset('Address Information', $attributes);
+echo "&lt;p&gt;fieldset content here&lt;/p&gt;\n";
+echo form_fieldset_close();
+
+/*
+        Produces:
+
+        &lt;fieldset id="address_info" class="address_info"&gt;
+                &lt;legend&gt;Address Information&lt;/legend&gt;
+                &lt;p&gt;form content here&lt;/p&gt;
+        &lt;/fieldset&gt;
+*/</pre>
+</div>
+</div>
+<div class="section" id="form-fieldset-close">
+<h2><a class="toc-backref" href="#id15">form_fieldset_close()</a><a class="headerlink" href="#form-fieldset-close" title="Permalink to this headline">¶</a></h2>
+<p>Produces a closing &lt;/fieldset&gt; tag. The only advantage to using this
+function is it permits you to pass data to it which will be added below
+the tag. For example</p>
+<div class="highlight-ci"><pre>$string = "&lt;/div&gt;&lt;/div&gt;";
+echo form_fieldset_close($string);
+// Would produce: &lt;/fieldset&gt;&lt;/div&gt;&lt;/div&gt;</pre>
+</div>
+</div>
+<div class="section" id="form-checkbox">
+<h2><a class="toc-backref" href="#id16">form_checkbox()</a><a class="headerlink" href="#form-checkbox" title="Permalink to this headline">¶</a></h2>
+<p>Lets you generate a checkbox field. Simple example</p>
+<div class="highlight-ci"><pre>echo form_checkbox('newsletter', 'accept', TRUE);
+// Would produce:  &lt;input type="checkbox" name="newsletter" value="accept" checked="checked" /&gt;</pre>
+</div>
+<p>The third parameter contains a boolean TRUE/FALSE to determine whether
+the box should be checked or not.</p>
+<p>Similar to the other form functions in this helper, you can also pass an
+array of attributes to the function</p>
+<div class="highlight-ci"><pre>$data = array(
+        'name'        =&gt; 'newsletter',
+        'id'          =&gt; 'newsletter',
+        'value'       =&gt; 'accept',
+        'checked'     =&gt; TRUE,
+        'style'       =&gt; 'margin:10px',
+);
+
+echo form_checkbox($data);
+// Would produce: &lt;input type="checkbox" name="newsletter" id="newsletter" value="accept" checked="checked" style="margin:10px" /&gt;</pre>
+</div>
+<p>As with other functions, if you would like the tag to contain additional
+data, like JavaScript, you can pass it as a string in the fourth
+parameter</p>
+<div class="highlight-ci"><pre>$js = 'onClick="some_function()"';
+echo form_checkbox('newsletter', 'accept', TRUE, $js)</pre>
+</div>
+</div>
+<div class="section" id="form-radio">
+<h2><a class="toc-backref" href="#id17">form_radio()</a><a class="headerlink" href="#form-radio" title="Permalink to this headline">¶</a></h2>
+<p>This function is identical in all respects to the <cite>form_checkbox()</cite>
+function above except that it uses the &#8220;radio&#8221; input type.</p>
+</div>
+<div class="section" id="form-submit">
+<h2><a class="toc-backref" href="#id18">form_submit()</a><a class="headerlink" href="#form-submit" title="Permalink to this headline">¶</a></h2>
+<p>Lets you generate a standard submit button. Simple example</p>
+<div class="highlight-ci"><pre>echo form_submit('mysubmit', 'Submit Post!');
+// Would produce:  &lt;input type="submit" name="mysubmit" value="Submit Post!" /&gt;</pre>
+</div>
+<p>Similar to other functions, you can submit an associative array in the
+first parameter if you prefer to set your own attributes. The third
+parameter lets you add extra data to your form, like JavaScript.</p>
+</div>
+<div class="section" id="form-label">
+<h2><a class="toc-backref" href="#id19">form_label()</a><a class="headerlink" href="#form-label" title="Permalink to this headline">¶</a></h2>
+<p>Lets you generate a &lt;label&gt;. Simple example</p>
+<div class="highlight-ci"><pre>echo form_label('What is your Name', 'username');
+// Would produce:  &lt;label for="username"&gt;What is your Name&lt;/label&gt;</pre>
+</div>
+<p>Similar to other functions, you can submit an associative array in the
+third parameter if you prefer to set additional attributes.</p>
+<div class="highlight-ci"><pre>$attributes = array(
+        'class' =&gt; 'mycustomclass',
+        'style' =&gt; 'color: #000;'
+);
+
+echo form_label('What is your Name', 'username', $attributes);
+// Would produce:  &lt;label for="username" class="mycustomclass" style="color: #000;"&gt;What is your Name&lt;/label&gt;</pre>
+</div>
+</div>
+<div class="section" id="form-reset">
+<h2><a class="toc-backref" href="#id20">form_reset()</a><a class="headerlink" href="#form-reset" title="Permalink to this headline">¶</a></h2>
+<p>Lets you generate a standard reset button. Use is identical to
+<cite>form_submit()</cite>.</p>
+</div>
+<div class="section" id="form-button">
+<h2><a class="toc-backref" href="#id21">form_button()</a><a class="headerlink" href="#form-button" title="Permalink to this headline">¶</a></h2>
+<p>Lets you generate a standard button element. You can minimally pass the
+button name and content in the first and second parameter</p>
+<div class="highlight-ci"><pre> echo form_button('name','content');
+// Would produce &lt;button name="name" type="button"&gt;Content&lt;/button&gt;</pre>
+</div>
+<p>Or you can pass an associative array containing any data you wish your
+form to contain:</p>
+<div class="highlight-ci"><pre>$data = array(
+        'name'          =&gt; 'button',
+        'id'            =&gt; 'button',
+        'value'         =&gt; 'true',
+        'type'          =&gt; 'reset',
+        'content'       =&gt; 'Reset'
+);
+
+echo form_button($data);
+// Would produce: &lt;button name="button" id="button" value="true" type="reset"&gt;Reset&lt;/button&gt;</pre>
+</div>
+<p>If you would like your form to contain some additional data, like
+JavaScript, you can pass it as a string in the third parameter:</p>
+<div class="highlight-ci"><pre> $js = 'onClick="some_function()"';
+echo form_button('mybutton', 'Click Me', $js);</pre>
+</div>
+</div>
+<div class="section" id="form-close">
+<h2><a class="toc-backref" href="#id22">form_close()</a><a class="headerlink" href="#form-close" title="Permalink to this headline">¶</a></h2>
+<p>Produces a closing &lt;/form&gt; tag. The only advantage to using this
+function is it permits you to pass data to it which will be added below
+the tag. For example</p>
+<div class="highlight-ci"><pre>$string = "&lt;/div&gt;&lt;/div&gt;";
+echo form_close($string);
+// Would produce:  &lt;/form&gt; &lt;/div&gt;&lt;/div&gt;</pre>
+</div>
+</div>
+<div class="section" id="form-prep">
+<h2><a class="toc-backref" href="#id23">form_prep()</a><a class="headerlink" href="#form-prep" title="Permalink to this headline">¶</a></h2>
+<p>Allows you to safely use HTML and characters such as quotes within form
+elements without breaking out of the form. Consider this example</p>
+<div class="highlight-ci"><pre>$string = 'Here is a string containing "quoted" text.';
+&lt;input type="text" name="myform" value="$string" /&gt;</pre>
+</div>
+<p>Since the above string contains a set of quotes it will cause the form
+to break. The <cite>form_prep()</cite> function converts HTML so that it can be used
+safely</p>
+<div class="highlight-ci"><pre>&lt;input type="text" name="myform" value="&lt;?php echo form_prep($string); ?&gt;" /&gt;</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you use any of the form helper functions listed in this page the form
+values will be prepped automatically, so there is no need to call this
+function. Use it only if you are creating your own form elements.</p>
+</div>
+</div>
+<div class="section" id="set-value">
+<h2><a class="toc-backref" href="#id24">set_value()</a><a class="headerlink" href="#set-value" title="Permalink to this headline">¶</a></h2>
+<p>Permits you to set the value of an input form or textarea. You must
+supply the field name via the first parameter of the function. The
+second (optional) parameter allows you to set a default value for the
+form. Example</p>
+<div class="highlight-ci"><pre>&lt;input type="text" name="quantity" value="&lt;?php echo set_value('quantity', '0'); ?&gt;" size="50" /&gt;</pre>
+</div>
+<p>The above form will show &#8220;0&#8221; when loaded for the first time.</p>
+</div>
+<div class="section" id="set-select">
+<h2><a class="toc-backref" href="#id25">set_select()</a><a class="headerlink" href="#set-select" title="Permalink to this headline">¶</a></h2>
+<p>If you use a &lt;select&gt; menu, this function permits you to display the
+menu item that was selected. The first parameter must contain the name
+of the select menu, the second parameter must contain the value of each
+item, and the third (optional) parameter lets you set an item as the
+default (use boolean TRUE/FALSE).</p>
+<p>Example</p>
+<div class="highlight-ci"><pre>&lt;select name="myselect"&gt;
+        &lt;option value="one" &lt;?php echo  set_select('myselect', 'one', TRUE); ?&gt; &gt;One&lt;/option&gt;
+        &lt;option value="two" &lt;?php echo  set_select('myselect', 'two'); ?&gt; &gt;Two&lt;/option&gt;
+        &lt;option value="three" &lt;?php echo  set_select('myselect', 'three'); ?&gt; &gt;Three&lt;/option&gt;
+&lt;/select&gt;</pre>
+</div>
+</div>
+<div class="section" id="set-checkbox">
+<h2><a class="toc-backref" href="#id26">set_checkbox()</a><a class="headerlink" href="#set-checkbox" title="Permalink to this headline">¶</a></h2>
+<p>Permits you to display a checkbox in the state it was submitted. The
+first parameter must contain the name of the checkbox, the second
+parameter must contain its value, and the third (optional) parameter
+lets you set an item as the default (use boolean TRUE/FALSE). Example</p>
+<div class="highlight-ci"><pre>&lt;input type="checkbox" name="mycheck" value="1" &lt;?php echo set_checkbox('mycheck', '1'); ?&gt; /&gt;
+&lt;input type="checkbox" name="mycheck" value="2" &lt;?php echo set_checkbox('mycheck', '2'); ?&gt; /&gt;</pre>
+</div>
+</div>
+<div class="section" id="set-radio">
+<h2><a class="toc-backref" href="#id27">set_radio()</a><a class="headerlink" href="#set-radio" title="Permalink to this headline">¶</a></h2>
+<p>Permits you to display radio buttons in the state they were submitted.
+This function is identical to the <strong>set_checkbox()</strong> function above.</p>
+<div class="highlight-ci"><pre>&lt;input type="radio" name="myradio" value="1" &lt;?php echo  set_radio('myradio', '1', TRUE); ?&gt; /&gt;
+&lt;input type="radio" name="myradio" value="2" &lt;?php echo  set_radio('myradio', '2'); ?&gt; /&gt;</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you are using the Form Validation class, you must always specify a rule for your field,
+even if empty, in order for the set_*() functions to work. This is because if a Form Validation object
+is defined, the control for set_*() is handed over to a method of the class instead of the generic helper
+function.</p>
+</div>
+</div>
+</div>
+
+		</div>
+
+		<!-- {user_guide_comments} -->
+					
+		<div id="footer">
+			<p class="top"><a href="#header" title="Return to top">Return to top</a></p>
+			<p><a href="">CodeIgniter</a> &ndash; Copyright &copy; 2012, EllisLab, Inc.</a></p>
+		</div><!-- /#footer -->
+	</body>
+</html>

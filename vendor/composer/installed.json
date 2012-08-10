@@ -1,0 +1,48 @@
+[
+    {
+        "name": "jamierumbelow/codeigniter-base-model",
+        "version": "v1.3.0",
+        "version_normalized": "1.3.0.0",
+        "source": {
+            "type": "git",
+            "url": "git://github.com/jamierumbelow/codeigniter-base-model.git",
+            "reference": "v1.3.0"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://github.com/jamierumbelow/codeigniter-base-model/zipball/v1.3.0",
+            "reference": "v1.3.0",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.1.6"
+        },
+        "type": "library",
+        "installation-source": "dist",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Jamie Rumbelow",
+                "email": "jamie@jamierumbelow.net",
+                "homepage": "http://jamierumbelow.net",
+                "role": null
+            }
+        ],
+        "description": "CodeIgniter base CRUD model to remove repetition and increase productivity",
+        "homepage": "https://github.com/jamierumbelow/codeigniter-base-model",
+        "keywords": [
+            "codeigniter",
+            "model",
+            "crud",
+            "base",
+            "scaffold"
+        ],
+        "autoload": {
+            "classmap": [
+                "core/MY_Model.php"
+            ]
+        }
+    }
+]

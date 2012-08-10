@@ -1,0 +1,229 @@
+
+<!DOCTYPE html>
+
+
+<html>
+	<head>
+		<meta charset="utf-8">
+	    
+	    <title>Database Quick Start: Example Code &mdash; CodeIgniter 3.0-dev documentation</title>
+
+	    <link rel="stylesheet" href="../_static/asset/css/common.css" type="text/css" />
+	    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+	    <script type="text/javascript">
+	      var DOCUMENTATION_OPTIONS = {
+	        URL_ROOT:    '../',
+	        VERSION:     '3.0-dev',
+	        COLLAPSE_INDEX: false,
+	        FILE_SUFFIX: '.html',
+	        HAS_SOURCE:  true
+	      };
+	    </script>
+	    <script type="text/javascript" src="../_static/jquery.js"></script>
+	    <script type="text/javascript" src="../_static/underscore.js"></script>
+	    <script type="text/javascript" src="../_static/doctools.js"></script>
+	    <link rel="top" title="CodeIgniter 3.0-dev documentation" href="../index.html" />
+	    <link rel="up" title="The Database Class" href="index.html" />
+	    <link rel="next" title="Database Configuration" href="configuration.html" />
+	    <link rel="prev" title="The Database Class" href="index.html" /> 
+	</head>
+	<body>
+		<div id="table-contents">
+			<div class="toctree-wrapper compound">
+			<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">General Topics</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Libraries</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to CodeIgniter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DCO.html">Developer&#8217;s Certificate of Origin 1.1</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../DCO.html">Developer&#8217;s Certificate of Origin 1.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">Open Software License (&#8220;OSL&#8221;) v 3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license_afl.html">Academic Free License (&#8220;AFL&#8221;) v 3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/requirements.html">Server Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">Welcome to CodeIgniter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">General Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">The Database Class</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="">Quick Start: Usage Examples</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">Database Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="connecting.html">Connecting to a Database</a></li>
+<li class="toctree-l2"><a class="reference internal" href="queries.html">Running Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="results.html">Generating Query Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html">Query Helper Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query_builder.html">Query Builder Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transactions.html">Transactions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table_data.html">Table MetaData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fields.html">Field MetaData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="call_function.html">Custom Function Calls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">Query Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="forge.html">Database Manipulation with Database Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utilities.html">Database Utilities Class</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/index.html">Writing CodeIgniter Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/quick_reference.html">Quick Reference Chart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/credits.html">Credits</a></li>
+</ul>
+
+			</div>
+		</div>
+
+		<div id="brand" class="ci">
+			<a href="http://codeigniter.com/"><img src="../_static/asset/img/ci-logo.gif" alt="CodeIgniter"></a>
+			<p>3.0-dev User Guide</p>
+		</div><!-- /#brand -->
+
+		<div id="header">
+			<form method="get" action="http://www.google.com/search">
+				<fieldset>
+					<input type="text" name="q" id="q" value="">
+					<input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />
+					<input class="grades" type="submit" value="search">
+				</fieldset>
+			</form>
+			<ul>
+				<li><a href="../index.html">User Guide Home</a>&nbsp;&nbsp; &rsaquo;</li>
+				<li><a href="index.html" accesskey="U">The Database Class</a>&nbsp;&nbsp;  &rsaquo;</li>
+				<li><strong>Database Quick Start: Example Code</strong></li>
+			</ul>
+		</div><!-- /#header -->
+
+		<div class="section" id="content">
+			<div class="section" id="database-quick-start-example-code">
+<h1>Database Quick Start: Example Code<a class="headerlink" href="#database-quick-start-example-code" title="Permalink to this headline">¶</a></h1>
+<p>The following page contains example code showing how the database class
+is used. For complete details please read the individual pages
+describing each function.</p>
+<div class="section" id="initializing-the-database-class">
+<h2>Initializing the Database Class<a class="headerlink" href="#initializing-the-database-class" title="Permalink to this headline">¶</a></h2>
+<p>The following code loads and initializes the database class based on
+your <a class="reference internal" href="configuration.html"><em>configuration</em></a> settings:</p>
+<div class="highlight-ci"><pre>$this-&gt;load-&gt;database();</pre>
+</div>
+<p>Once loaded the class is ready to be used as described below.</p>
+<p>Note: If all your pages require database access you can connect
+automatically. See the <a class="reference internal" href="connecting.html"><em>connecting</em></a> page for details.</p>
+</div>
+<div class="section" id="standard-query-with-multiple-results-object-version">
+<h2>Standard Query With Multiple Results (Object Version)<a class="headerlink" href="#standard-query-with-multiple-results-object-version" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ci"><pre>$query = $this-&gt;db-&gt;query('SELECT name, title, email FROM my_table');
+
+foreach ($query-&gt;result() as $row)
+{
+        echo $row-&gt;title;
+        echo $row-&gt;name;
+        echo $row-&gt;email;
+}
+
+echo 'Total Results: ' . $query-&gt;num_rows();</pre>
+</div>
+<p>The above result() function returns an array of <strong>objects</strong>. Example:
+$row-&gt;title</p>
+</div>
+<div class="section" id="standard-query-with-multiple-results-array-version">
+<h2>Standard Query With Multiple Results (Array Version)<a class="headerlink" href="#standard-query-with-multiple-results-array-version" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ci"><pre>$query = $this-&gt;db-&gt;query('SELECT name, title, email FROM my_table');
+
+foreach ($query-&gt;result_array() as $row)
+{
+        echo $row['title'];
+        echo $row['name'];
+        echo $row['email'];
+}</pre>
+</div>
+<p>The above result_array() function returns an array of standard array
+indexes. Example: $row[&#8216;title&#8217;]</p>
+</div>
+<div class="section" id="testing-for-results">
+<h2>Testing for Results<a class="headerlink" href="#testing-for-results" title="Permalink to this headline">¶</a></h2>
+<p>If you run queries that might <strong>not</strong> produce a result, you are
+encouraged to test for a result first using the num_rows() function:</p>
+<div class="highlight-ci"><pre>$query = $this-&gt;db-&gt;query("YOUR QUERY");
+if ($query-&gt;num_rows() &gt; 0)
+{
+        foreach ($query-&gt;result() as $row)
+        {
+                echo $row-&gt;title;
+                echo $row-&gt;name;
+                echo $row-&gt;body;
+        }
+}</pre>
+</div>
+</div>
+<div class="section" id="standard-query-with-single-result">
+<h2>Standard Query With Single Result<a class="headerlink" href="#standard-query-with-single-result" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ci"><pre>$query = $this-&gt;db-&gt;query('SELECT name FROM my_table LIMIT 1');
+$row = $query-&gt;row();
+echo $row-&gt;name;</pre>
+</div>
+<p>The above row() function returns an <strong>object</strong>. Example: $row-&gt;name</p>
+</div>
+<div class="section" id="standard-query-with-single-result-array-version">
+<h2>Standard Query With Single Result (Array version)<a class="headerlink" href="#standard-query-with-single-result-array-version" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ci"><pre>$query = $this-&gt;db-&gt;query('SELECT name FROM my_table LIMIT 1');
+$row = $query-&gt;row_array();
+echo $row['name'];</pre>
+</div>
+<p>The above row_array() function returns an <strong>array</strong>. Example:
+$row[&#8216;name&#8217;]</p>
+</div>
+<div class="section" id="standard-insert">
+<h2>Standard Insert<a class="headerlink" href="#standard-insert" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ci"><pre>$sql = "INSERT INTO mytable (title, name) VALUES (".$this-&gt;db-&gt;escape($title).", ".$this-&gt;db-&gt;escape($name).")";
+$this-&gt;db-&gt;query($sql);
+echo $this-&gt;db-&gt;affected_rows();</pre>
+</div>
+</div>
+<div class="section" id="query-builder-query">
+<h2>Query Builder Query<a class="headerlink" href="#query-builder-query" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="query_builder.html"><em>Query Builder Pattern</em></a> gives you a simplified
+means of retrieving data:</p>
+<div class="highlight-ci"><pre>$query = $this-&gt;db-&gt;get('table_name');
+
+foreach ($query-&gt;result() as $row)
+{
+        echo $row-&gt;title;
+}</pre>
+</div>
+<p>The above get() function retrieves all the results from the supplied
+table. The <a class="reference internal" href="query_builder.html"><em>Query Builder</em></a> class contains a full
+compliment of functions for working with data.</p>
+</div>
+<div class="section" id="query-builder-insert">
+<h2>Query Builder Insert<a class="headerlink" href="#query-builder-insert" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-ci"><pre>$data = array(
+        'title' =&gt; $title,
+        'name' =&gt; $name,
+        'date' =&gt; $date
+);
+
+$this-&gt;db-&gt;insert('mytable', $data);  // Produces: INSERT INTO mytable (title, name, date) VALUES ('{$title}', '{$name}', '{$date}')</pre>
+</div>
+</div>
+</div>
+
+		</div>
+
+		<!-- {user_guide_comments} -->
+					
+		<div id="footer">
+			<p class="top"><a href="#header" title="Return to top">Return to top</a></p>
+			<p><a href="">CodeIgniter</a> &ndash; Copyright &copy; 2012, EllisLab, Inc.</a></p>
+		</div><!-- /#footer -->
+	</body>
+</html>

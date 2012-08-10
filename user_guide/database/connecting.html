@@ -1,0 +1,257 @@
+
+<!DOCTYPE html>
+
+
+<html>
+	<head>
+		<meta charset="utf-8">
+	    
+	    <title>Connecting to your Database &mdash; CodeIgniter 3.0-dev documentation</title>
+
+	    <link rel="stylesheet" href="../_static/asset/css/common.css" type="text/css" />
+	    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+	    <script type="text/javascript">
+	      var DOCUMENTATION_OPTIONS = {
+	        URL_ROOT:    '../',
+	        VERSION:     '3.0-dev',
+	        COLLAPSE_INDEX: false,
+	        FILE_SUFFIX: '.html',
+	        HAS_SOURCE:  true
+	      };
+	    </script>
+	    <script type="text/javascript" src="../_static/jquery.js"></script>
+	    <script type="text/javascript" src="../_static/underscore.js"></script>
+	    <script type="text/javascript" src="../_static/doctools.js"></script>
+	    <link rel="top" title="CodeIgniter 3.0-dev documentation" href="../index.html" />
+	    <link rel="up" title="The Database Class" href="index.html" />
+	    <link rel="next" title="Queries" href="queries.html" />
+	    <link rel="prev" title="Database Configuration" href="configuration.html" /> 
+	</head>
+	<body>
+		<div id="table-contents">
+			<div class="toctree-wrapper compound">
+			<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">General Topics</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Libraries</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to CodeIgniter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DCO.html">Developer&#8217;s Certificate of Origin 1.1</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../DCO.html">Developer&#8217;s Certificate of Origin 1.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">Open Software License (&#8220;OSL&#8221;) v 3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license_afl.html">Academic Free License (&#8220;AFL&#8221;) v 3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/requirements.html">Server Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">Welcome to CodeIgniter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">General Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">The Database Class</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="examples.html">Quick Start: Usage Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration.html">Database Configuration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Connecting to a Database</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="queries.html">Running Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="results.html">Generating Query Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="helpers.html">Query Helper Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query_builder.html">Query Builder Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transactions.html">Transactions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table_data.html">Table MetaData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fields.html">Field MetaData</a></li>
+<li class="toctree-l2"><a class="reference internal" href="call_function.html">Custom Function Calls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">Query Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="forge.html">Database Manipulation with Database Forge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utilities.html">Database Utilities Class</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/index.html">Writing CodeIgniter Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/quick_reference.html">Quick Reference Chart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/credits.html">Credits</a></li>
+</ul>
+
+			</div>
+		</div>
+
+		<div id="brand" class="ci">
+			<a href="http://codeigniter.com/"><img src="../_static/asset/img/ci-logo.gif" alt="CodeIgniter"></a>
+			<p>3.0-dev User Guide</p>
+		</div><!-- /#brand -->
+
+		<div id="header">
+			<form method="get" action="http://www.google.com/search">
+				<fieldset>
+					<input type="text" name="q" id="q" value="">
+					<input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />
+					<input class="grades" type="submit" value="search">
+				</fieldset>
+			</form>
+			<ul>
+				<li><a href="../index.html">User Guide Home</a>&nbsp;&nbsp; &rsaquo;</li>
+				<li><a href="index.html" accesskey="U">The Database Class</a>&nbsp;&nbsp;  &rsaquo;</li>
+				<li><strong>Connecting to your Database</strong></li>
+			</ul>
+		</div><!-- /#header -->
+
+		<div class="section" id="content">
+			<div class="section" id="connecting-to-your-database">
+<h1>Connecting to your Database<a class="headerlink" href="#connecting-to-your-database" title="Permalink to this headline">¶</a></h1>
+<p>There are two ways to connect to a database:</p>
+<div class="section" id="automatically-connecting">
+<h2>Automatically Connecting<a class="headerlink" href="#automatically-connecting" title="Permalink to this headline">¶</a></h2>
+<p>The &#8220;auto connect&#8221; feature will load and instantiate the database class
+with every page load. To enable &#8220;auto connecting&#8221;, add the word database
+to the library array, as indicated in the following file:</p>
+<p>application/config/autoload.php</p>
+</div>
+<div class="section" id="manually-connecting">
+<h2>Manually Connecting<a class="headerlink" href="#manually-connecting" title="Permalink to this headline">¶</a></h2>
+<p>If only some of your pages require database connectivity you can
+manually connect to your database by adding this line of code in any
+function where it is needed, or in your class constructor to make the
+database available globally in that class.</p>
+<div class="highlight-ci"><pre>$this-&gt;load-&gt;database();</pre>
+</div>
+<p>If the above function does <strong>not</strong> contain any information in the first
+parameter it will connect to the group specified in your database config
+file. For most people, this is the preferred method of use.</p>
+<div class="section" id="available-parameters">
+<h3>Available Parameters<a class="headerlink" href="#available-parameters" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>The database connection values, passed either as an array or a DSN
+string.</li>
+<li>TRUE/FALSE (boolean). Whether to return the connection ID (see
+Connecting to Multiple Databases below).</li>
+<li>TRUE/FALSE (boolean). Whether to enable the Query Builder class. Set
+to TRUE by default.</li>
+</ol>
+</div>
+<div class="section" id="manually-connecting-to-a-database">
+<h3>Manually Connecting to a Database<a class="headerlink" href="#manually-connecting-to-a-database" title="Permalink to this headline">¶</a></h3>
+<p>The first parameter of this function can <strong>optionally</strong> be used to
+specify a particular database group from your config file, or you can
+even submit connection values for a database that is not specified in
+your config file. Examples:</p>
+<p>To choose a specific group from your config file you can do this:</p>
+<div class="highlight-ci"><pre>$this-&gt;load-&gt;database('group_name');</pre>
+</div>
+<p>Where group_name is the name of the connection group from your config
+file.</p>
+<p>To connect manually to a desired database you can pass an array of
+values:</p>
+<div class="highlight-ci"><pre>$config['hostname'] = 'localhost';
+$config['username'] = 'myusername';
+$config['password'] = 'mypassword';
+$config['database'] = 'mydatabase';
+$config['dbdriver'] = 'mysqli';
+$config['dbprefix'] = '';
+$config['pconnect'] = FALSE;
+$config['db_debug'] = TRUE;
+$config['cache_on'] = FALSE;
+$config['cachedir'] = '';
+$config['char_set'] = 'utf8';
+$config['dbcollat'] = 'utf8_general_ci';
+$this-&gt;load-&gt;database($config);</pre>
+</div>
+<p>For information on each of these values please see the <a class="reference internal" href="configuration.html"><em>configuration
+page</em></a>.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>For the PDO driver, you should use the $config[&#8216;dsn&#8217;] setting
+instead of &#8216;hostname&#8217; and &#8216;database&#8217;:</p>
+<div class="last line-block">
+<div class="line"><br /></div>
+<div class="line">$config[&#8216;dsn&#8217;] = &#8216;mysql:host=localhost;dbname=mydatabase&#8217;;</div>
+</div>
+</div>
+<p>Or you can submit your database values as a Data Source Name. DSNs must
+have this prototype:</p>
+<div class="highlight-ci"><pre>$dsn = 'dbdriver://username:password@hostname/database';
+$this-&gt;load-&gt;database($dsn);</pre>
+</div>
+<p>To override default config values when connecting with a DSN string, add
+the config variables as a query string.</p>
+<div class="highlight-ci"><pre>$dsn = 'dbdriver://username:password@hostname/database?char_set=utf8&amp;dbcollat=utf8_general_ci&amp;cache_on=true&amp;cachedir=/path/to/cache';
+$this-&gt;load-&gt;database($dsn);</pre>
+</div>
+</div>
+</div>
+<div class="section" id="connecting-to-multiple-databases">
+<h2>Connecting to Multiple Databases<a class="headerlink" href="#connecting-to-multiple-databases" title="Permalink to this headline">¶</a></h2>
+<p>If you need to connect to more than one database simultaneously you can
+do so as follows:</p>
+<div class="highlight-ci"><pre>$DB1 = $this-&gt;load-&gt;database('group_one', TRUE);
+$DB2 = $this-&gt;load-&gt;database('group_two', TRUE);</pre>
+</div>
+<p>Note: Change the words &#8220;group_one&#8221; and &#8220;group_two&#8221; to the specific
+group names you are connecting to (or you can pass the connection values
+as indicated above).</p>
+<p>By setting the second parameter to TRUE (boolean) the function will
+return the database object.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>When you connect this way, you will use your object name to issue
+commands rather than the syntax used throughout this guide. In other
+words, rather than issuing commands with:</p>
+<div class="last line-block">
+<div class="line"><br /></div>
+<div class="line">$this-&gt;db-&gt;query();</div>
+<div class="line">$this-&gt;db-&gt;result();</div>
+<div class="line">etc...</div>
+<div class="line"><br /></div>
+<div class="line">You will instead use:</div>
+<div class="line"><br /></div>
+<div class="line">$DB1-&gt;query();</div>
+<div class="line">$DB1-&gt;result();</div>
+<div class="line">etc...</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>You don&#8217;t need to create separate database configurations if you
+only need to use a different database on the same connection. You
+can switch to a different database when you need to, like this:</p>
+<div class="last line-block">
+<div class="line">$this-&gt;db-&gt;db_select($database2_name);</div>
+</div>
+</div>
+</div>
+<div class="section" id="reconnecting-keeping-the-connection-alive">
+<h2>Reconnecting / Keeping the Connection Alive<a class="headerlink" href="#reconnecting-keeping-the-connection-alive" title="Permalink to this headline">¶</a></h2>
+<p>If the database server&#8217;s idle timeout is exceeded while you&#8217;re doing
+some heavy PHP lifting (processing an image, for instance), you should
+consider pinging the server by using the reconnect() method before
+sending further queries, which can gracefully keep the connection alive
+or re-establish it.</p>
+<div class="highlight-ci"><pre>$this-&gt;db-&gt;reconnect();</pre>
+</div>
+</div>
+<div class="section" id="manually-closing-the-connection">
+<h2>Manually closing the Connection<a class="headerlink" href="#manually-closing-the-connection" title="Permalink to this headline">¶</a></h2>
+<p>While CodeIgniter intelligently takes care of closing your database
+connections, you can explicitly close the connection.</p>
+<div class="highlight-ci"><pre>$this-&gt;db-&gt;close();</pre>
+</div>
+</div>
+</div>
+
+		</div>
+
+		<!-- {user_guide_comments} -->
+					
+		<div id="footer">
+			<p class="top"><a href="#header" title="Return to top">Return to top</a></p>
+			<p><a href="">CodeIgniter</a> &ndash; Copyright &copy; 2012, EllisLab, Inc.</a></p>
+		</div><!-- /#footer -->
+	</body>
+</html>

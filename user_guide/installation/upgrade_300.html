@@ -1,0 +1,275 @@
+
+<!DOCTYPE html>
+
+
+<html>
+	<head>
+		<meta charset="utf-8">
+	    
+	    <title>Upgrading from 2.1.2 to 3.0.0 &mdash; CodeIgniter 3.0-dev documentation</title>
+
+	    <link rel="stylesheet" href="../_static/asset/css/common.css" type="text/css" />
+	    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+	    <script type="text/javascript">
+	      var DOCUMENTATION_OPTIONS = {
+	        URL_ROOT:    '../',
+	        VERSION:     '3.0-dev',
+	        COLLAPSE_INDEX: false,
+	        FILE_SUFFIX: '.html',
+	        HAS_SOURCE:  true
+	      };
+	    </script>
+	    <script type="text/javascript" src="../_static/jquery.js"></script>
+	    <script type="text/javascript" src="../_static/underscore.js"></script>
+	    <script type="text/javascript" src="../_static/doctools.js"></script>
+	    <link rel="top" title="CodeIgniter 3.0-dev documentation" href="../index.html" />
+	    <link rel="up" title="Installation Instructions" href="index.html" />
+	    <link rel="next" title="Upgrading From Beta 1.0 to Beta 1.1" href="upgrade_b11.html" />
+	    <link rel="prev" title="Upgrading from 2.1.1 to 2.1.2" href="upgrade_212.html" /> 
+	</head>
+	<body>
+		<div id="table-contents">
+			<div class="toctree-wrapper compound">
+			<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">General Topics</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Libraries</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to CodeIgniter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DCO.html">Developer&#8217;s Certificate of Origin 1.1</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../DCO.html">Developer&#8217;s Certificate of Origin 1.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">Open Software License (&#8220;OSL&#8221;) v 3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license_afl.html">Academic Free License (&#8220;AFL&#8221;) v 3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/requirements.html">Server Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">Welcome to CodeIgniter</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Installation Instructions</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="downloads.html">Downloading CodeIgniter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade_120.html">Upgrading From Beta 1.0 to Final 1.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade_130.html">Upgrading from 1.2 to 1.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade_131.html">Upgrading from 1.3 to 1.3.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade_132.html">Upgrading from 1.3.1 to 1.3.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade_133.html">Upgrading from 1.3.2 to 1.3.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade_140.html">Upgrading from 1.3.3 to 1.4.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade_141.html">Upgrading from 1.4.0 to 1.4.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade_150.html">Upgrading from 1.4.1 to 1.5.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade_152.html">Upgrading from 1.5.0 to 1.5.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade_153.html">Upgrading from 1.5.2 to 1.5.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade_154.html">Upgrading from 1.5.3 to 1.5.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade_160.html">Upgrading from 1.5.4 to 1.6.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade_161.html">Upgrading from 1.6.0 to 1.6.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade_162.html">Upgrading from 1.6.1 to 1.6.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade_163.html">Upgrading from 1.6.2 to 1.6.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade_170.html">Upgrading from 1.6.3 to 1.7.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade_171.html">Upgrading from 1.7.0 to 1.7.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade_172.html">Upgrading from 1.7.1 to 1.7.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade_200.html">Upgrading from 1.7.2 to 2.0.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade_201.html">Upgrading from 2.0.0 to 2.0.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade_202.html">Upgrading from 2.0.1 to 2.0.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade_203.html">Upgrading from 2.0.2 to 2.0.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade_210.html">Upgrading from 2.0.3 to 2.1.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade_211.html">Upgrading from 2.1.0 to 2.1.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade_212.html">Upgrading from 2.1.1 to 2.1.2</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Upgrading from 2.1.2 to 3.0.0</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade_b11.html">Upgrading From Beta 1.0 to Beta 1.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrading.html">Upgrading From a Previous Version</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">General Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">The Database Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/index.html">Writing CodeIgniter Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/quick_reference.html">Quick Reference Chart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/credits.html">Credits</a></li>
+</ul>
+
+			</div>
+		</div>
+
+		<div id="brand" class="ci">
+			<a href="http://codeigniter.com/"><img src="../_static/asset/img/ci-logo.gif" alt="CodeIgniter"></a>
+			<p>3.0-dev User Guide</p>
+		</div><!-- /#brand -->
+
+		<div id="header">
+			<form method="get" action="http://www.google.com/search">
+				<fieldset>
+					<input type="text" name="q" id="q" value="">
+					<input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />
+					<input class="grades" type="submit" value="search">
+				</fieldset>
+			</form>
+			<ul>
+				<li><a href="../index.html">User Guide Home</a>&nbsp;&nbsp; &rsaquo;</li>
+				<li><a href="index.html" accesskey="U">Installation Instructions</a>&nbsp;&nbsp;  &rsaquo;</li>
+				<li><strong>Upgrading from 2.1.2 to 3.0.0</strong></li>
+			</ul>
+		</div><!-- /#header -->
+
+		<div class="section" id="content">
+			<div class="section" id="upgrading-from-2-1-2-to-3-0-0">
+<h1>Upgrading from 2.1.2 to 3.0.0<a class="headerlink" href="#upgrading-from-2-1-2-to-3-0-0" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">These upgrade notes are for a version that is yet to be released.</p>
+</div>
+<p>Before performing an update you should take your site offline by replacing the index.php file with a static one.</p>
+<div class="section" id="step-1-update-your-codeigniter-files">
+<h2>Step 1: Update your CodeIgniter files<a class="headerlink" href="#step-1-update-your-codeigniter-files" title="Permalink to this headline">¶</a></h2>
+<p>Replace all files and directories in your &#8220;system&#8221; folder and replace
+your index.php file. If any modifications were made to your index.php
+they will need to be made fresh in this new one.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you have any custom developed files in these folders please
+make copies of them first.</p>
+</div>
+</div>
+<div class="section" id="step-2-replace-config-mimes-php">
+<h2>Step 2: Replace config/mimes.php<a class="headerlink" href="#step-2-replace-config-mimes-php" title="Permalink to this headline">¶</a></h2>
+<p>This config file has been updated to contain more user mime-types, please copy
+it to _application/config/mimes.php*.</p>
+</div>
+<div class="section" id="step-3-remove-autoload-core-from-your-config-autoload-php">
+<h2>Step 3: Remove $autoload[&#8216;core&#8217;] from your config/autoload.php<a class="headerlink" href="#step-3-remove-autoload-core-from-your-config-autoload-php" title="Permalink to this headline">¶</a></h2>
+<p>Use of the <tt class="docutils literal"><span class="pre">$autoload['core']</span></tt> config array has been deprecated as of CodeIgniter 1.4.1 and is now removed.
+Move any entries that you might have listed there to <tt class="docutils literal"><span class="pre">$autoload['libraries']</span></tt> instead.</p>
+</div>
+<div class="section" id="step-4-update-your-config-database-php">
+<h2>Step 4: Update your config/database.php<a class="headerlink" href="#step-4-update-your-config-database-php" title="Permalink to this headline">¶</a></h2>
+<p>Due to 3.0.0&#8217;s renaming of Active Record to Query Builder, inside your <cite>config/database.php</cite>, you will
+need to rename the <cite>$active_record</cite> variable to <cite>$query_builder</cite>.</p>
+<blockquote>
+<div>$active_group = &#8216;default&#8217;;
+// $active_record = TRUE;
+$query_builder = TRUE;</div></blockquote>
+</div>
+<div class="section" id="step-5-move-your-errors-folder">
+<h2>Step 5: Move your errors folder<a class="headerlink" href="#step-5-move-your-errors-folder" title="Permalink to this headline">¶</a></h2>
+<p>In version 3.0.0, the errors folder has been moved from _application/errors* to _application/views/errors*.</p>
+</div>
+<div class="section" id="step-6-check-the-calls-to-array-helper-s-element-and-elements-functions">
+<h2>Step 6: Check the calls to Array Helper&#8217;s element() and elements() functions<a class="headerlink" href="#step-6-check-the-calls-to-array-helper-s-element-and-elements-functions" title="Permalink to this headline">¶</a></h2>
+<p>The default return value of these functions, when the required elements
+don&#8217;t exist, has been changed from FALSE to NULL.</p>
+</div>
+<div class="section" id="step-7-remove-usage-of-previously-deprecated-functionalities">
+<h2>Step 7: Remove usage of (previously) deprecated functionalities<a class="headerlink" href="#step-7-remove-usage-of-previously-deprecated-functionalities" title="Permalink to this headline">¶</a></h2>
+<p>In addition to the <tt class="docutils literal"><span class="pre">$autoload['core']</span></tt> configuration setting, there&#8217;s a number of other functionalities
+that have been removed in CodeIgniter 3.0.0:</p>
+<div class="section" id="the-sha1-library">
+<h3>The SHA1 library<a class="headerlink" href="#the-sha1-library" title="Permalink to this headline">¶</a></h3>
+<p>The previously deprecated SHA1 library has been removed, alter your code to use PHP&#8217;s native
+<tt class="docutils literal"><span class="pre">sha1()</span></tt> function to generate a SHA1 hash.</p>
+<p>Additionally, the <tt class="docutils literal"><span class="pre">sha1()</span></tt> method in the <a class="reference internal" href="../libraries/encryption.html"><em>Encryption Library</em></a> has been removed.</p>
+</div>
+<div class="section" id="the-ext-constant">
+<h3>The EXT constant<a class="headerlink" href="#the-ext-constant" title="Permalink to this headline">¶</a></h3>
+<p>Usage of the <tt class="docutils literal"><span class="pre">EXT</span></tt> constant has been deprecated since dropping support for PHP 4. There&#8217;s no
+longer a need to maintain different filename extensions and in this new CodeIgniter version,
+the <tt class="docutils literal"><span class="pre">EXT</span></tt> constant has been removed. Use just &#8216;.php&#8217; instead.</p>
+</div>
+<div class="section" id="smiley-helper-js-insert-smiley">
+<h3>Smiley helper js_insert_smiley()<a class="headerlink" href="#smiley-helper-js-insert-smiley" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="../helpers/smiley_helper.html"><em>Smiley Helper</em></a> function <tt class="docutils literal"><span class="pre">js_insert_smiley()</span></tt> has been deprecated
+since CodeIgniter 1.7.2 and is now removed. You&#8217;ll need to switch to <tt class="docutils literal"><span class="pre">smiley_js()</span></tt> instead.</p>
+</div>
+<div class="section" id="security-helper-do-hash">
+<h3>Security helper do_hash()<a class="headerlink" href="#security-helper-do-hash" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="../helpers/security_helper.html"><em>Security Helper</em></a> function <tt class="docutils literal"><span class="pre">do_hash()</span></tt> is now just an alias for
+PHP&#8217;s native <tt class="docutils literal"><span class="pre">hash()</span></tt> function. It is deprecated and scheduled for removal in CodeIgniter 3.1+.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This function is still available, but you&#8217;re strongly encouraged to remove it&#8217;s usage sooner
+rather than later.</p>
+</div>
+</div>
+<div class="section" id="file-helper-read-file">
+<h3>File helper read_file()<a class="headerlink" href="#file-helper-read-file" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="../helpers/file_helper.html"><em>File Helper</em></a> function <tt class="docutils literal"><span class="pre">read_file()</span></tt> is now just an alias for
+PHP&#8217;s native <tt class="docutils literal"><span class="pre">file_get_contents()</span></tt> function. It is deprecated and scheduled for removal in
+CodeIgniter 3.1+.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This function is still available, but you&#8217;re strongly encouraged to remove it&#8217;s usage sooner
+rather than later.</p>
+</div>
+</div>
+<div class="section" id="date-helper-standard-date">
+<h3>Date helper standard_date()<a class="headerlink" href="#date-helper-standard-date" title="Permalink to this headline">¶</a></h3>
+<p><a class="reference internal" href="../helpers/date_helper.html"><em>Date Helper</em></a> function <tt class="docutils literal"><span class="pre">standard_date()</span></tt> is being deprecated due
+to the availability of native PHP <a class="reference external" href="http://www.php.net/manual/en/class.datetime.php#datetime.constants.types">constants</a>,
+which when combined with <tt class="docutils literal"><span class="pre">date()</span></tt> provide the same functionality. Furthermore, they have the
+exact same names as the ones supported by <tt class="docutils literal"><span class="pre">standard_date()</span></tt>. Here are examples of how to replace
+it&#8217;s usage:</p>
+<div class="highlight-ci"><pre>// Old way
+standard_date(); // defaults to standard_date('DATE_RFC822', now());
+
+// Replacement
+date(DATE_RFC822, now());
+
+// Old way
+standard_date('DATE_ATOM', $time);
+
+// Replacement
+date(DATE_ATOM, $time);</pre>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This function is still available, but you&#8217;re strongly encouraged to remove its&#8217; usage sooner
+rather than later as it is scheduled for removal in CodeIgniter 3.1+.</p>
+</div>
+</div>
+<div class="section" id="pagination-library-anchor-class-setting">
+<h3>Pagination library &#8216;anchor_class&#8217; setting<a class="headerlink" href="#pagination-library-anchor-class-setting" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference internal" href="../libraries/pagination.html"><em>Pagination Library</em></a> now supports adding pretty much any HTML
+attribute to your anchors via the &#8216;attributes&#8217; configuration setting. This includes passing the
+&#8216;class&#8217; attribute and using the separate &#8216;anchor_class&#8217; setting no longer makes sense.
+As a result of that, the &#8216;anchor_class&#8217; setting is now deprecated and scheduled for removal in
+CodeIgniter 3.1+.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This setting is still available, but you&#8217;re strongly encouraged to remove its&#8217; usage sooner
+rather than later.</p>
+</div>
+</div>
+<div class="section" id="email-library">
+<h3>Email library<a class="headerlink" href="#email-library" title="Permalink to this headline">¶</a></h3>
+<p>The <a class="reference internal" href="../libraries/email.html"><em>Email library</em></a> will automatically clear the set parameters after successfully sending
+emails. To override this behaviour, pass FALSE as the first parameter in the <tt class="docutils literal"><span class="pre">send()</span></tt> function:</p>
+<dl class="docutils">
+<dt>::</dt>
+<dd><p class="first">if ($this-&gt;email-&gt;send(FALSE))
+{</p>
+<blockquote>
+<div>// Parameters won&#8217;t be cleared</div></blockquote>
+<p class="last">}</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+		</div>
+
+		<!-- {user_guide_comments} -->
+					
+		<div id="footer">
+			<p class="top"><a href="#header" title="Return to top">Return to top</a></p>
+			<p><a href="">CodeIgniter</a> &ndash; Copyright &copy; 2012, EllisLab, Inc.</a></p>
+		</div><!-- /#footer -->
+	</body>
+</html>

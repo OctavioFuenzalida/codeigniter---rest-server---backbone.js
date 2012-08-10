@@ -1,0 +1,279 @@
+/**
+ * View logic for Blogs
+ */
+
+/**
+ * application logic specific to the Blog listing page
+ */
+var page = {
+
+	blogs: new model.BlogCollection(),
+	collectionView: null,
+	blog: null,
+	modelView: null,
+
+	fetchParams: null,
+	fetchInProgress: false,
+	dialogIsOpen: false,
+
+	/**
+	 *
+	 */
+	init: function()
+	{
+		// make the new button clickable
+		$("#newBlogButton").click(function(e) {
+			e.preventDefault();
+			page.showDetailDialog();
+		});
+
+		// let the page know when the dialog is open
+		$('#blogDetailDialog').on('show',function(){
+			page.dialogIsOpen = true;
+		});
+
+		// when the model dialog is closed, let page know and reset the model view
+		$('#blogDetailDialog').on('hidden',function(){
+			$('#modelAlert').html('');
+			page.dialogIsOpen = false;
+		});
+
+		// save the model when the save button is clicked
+		$("#saveBlogButton").click(function(e) {
+			e.preventDefault();
+			page.updateModel();
+		});
+
+		// initialize the collection view
+		this.collectionView = new view.CollectionView({
+			el: $("#blogCollectionContainer"),
+			templateEl: $("#blogCollectionTemplate"),
+			collection: page.blogs
+		});
+
+		// make the rows clickable ('rendered' is a custom event, not a standard backbone event)
+		this.collectionView.on('rendered',function(){
+
+			// attach click handler to the table rows for editing
+			$('table.collection tbody tr').click(function(e) {
+				e.preventDefault();
+				var m = page.blogs.get(this.id);
+				page.showDetailDialog(m);
+			});
+
+			// attach click handlers to the pagination controls
+			$('.pageButton').click(function(e) {
+				e.preventDefault();
+				var p = this.id.substr(5);
+				page.fetchBlogs({ page: p });
+			});
+		});
+
+		// backbone docs recommend bootstrapping data on initial page load, but we live by our own rules!
+		this.fetchBlogs({ page: 1 });
+
+		// initialize the model view
+		this.modelView = new view.ModelView({
+			el: $("#blogModelContainer")
+		});
+
+		// tell the model view where it's template is located
+		this.modelView.templateEl = $("#blogModelTemplate");
+
+		if (model.longPollDuration > 0)
+		{
+			setInterval(function () {
+
+				if (!page.dialogIsOpen)
+				{
+					page.fetchBlogs(page.fetchParams,true);
+				}
+
+			}, model.longPollDuration);
+		}
+	},
+
+	/**
+	 * Fetch the collection data from the server
+	 * @param object params passed through to collection.fetch
+	 * @param bool true to hide the loading animation
+	 */
+	fetchBlogs: function(params, hideLoader)
+	{
+		page.fetchParams = params;
+		if (page.fetchInProgress)
+		{
+			if (console) console.log('supressing fetch because it is already in progress');
+		}
+		page.fetchInProgress = true;
+		if (!hideLoader) app.showProgress('loader');;
+
+		page.blogs.fetch({
+			data: params,
+			success: function() {
+				if (page.blogs.collectionHasChanged)
+				{
+					// data returned from the server.  render the collection view
+					page.collectionView.render();
+				}
+				app.hideProgress('loader');
+				page.fetchInProgress = false;
+			},
+			error: function(m, r) {
+				app.appendAlert(app.getErrorMessage(r), 'alert-error',0,'collectionAlert');
+				app.hideProgress('loader');
+				page.fetchInProgress = false;
+			}
+
+		});
+	},
+
+	/**
+	 * show the dialog for editing a model
+	 * @param model
+	 */
+	showDetailDialog: function(m) {
+		// show the modal dialog
+		$('#blogDetailDialog').modal({ show: true });
+		// if a model was specified then that means a user is editing an existing record
+		// if not, then the user is creating a new record
+		page.blog = m ? m : new model.BlogModel();
+		page.modelView.model = page.blog;
+		if (page.blog.id == null || page.blog.id == '')
+		{
+			// this is a new record, there is no need to contact the server
+			page.renderModelView(false);
+		}
+		else
+		{
+			app.showProgress('modelLoader');
+			// fetch the model from the server so we are not updating stale data
+			page.blog.fetch({
+				success: function() {
+					// data returned from the server.  render the model view
+					page.renderModelView(true);
+				},
+				error: function(m, r) {
+					app.appendAlert(app.getErrorMessage(r), 'alert-error',0,'modelAlert');
+					app.hideProgress('modelLoader');
+				}
+			});
+		}
+	},
+
+	/**
+	 * Render the model template in the popup
+	 * @param bool show the delete button
+	 */
+	renderModelView: function(showDeleteButton)
+	{
+		page.modelView.render();
+		app.hideProgress('modelLoader');
+		// initialize any special controls
+		try {
+			$('.date-picker').datepicker({ format: 'yyyy-mm-dd' });
+		} catch (error) {
+			// this happens if the datepicker input.value isn't a valid date
+			if (console) console.log('datepicker error: '+error.message);
+		}
+
+		if (showDeleteButton)
+		{
+			// attach click handlers to the delete buttons
+			$('#deleteBlogButton').click(function(e) {
+				e.preventDefault();
+				$('#confirmDeleteBlogContainer').show('fast');
+			});
+			$('#cancelDeleteBlogButton').click(function(e) {
+				e.preventDefault();
+				$('#confirmDeleteBlogContainer').hide('fast');
+			});
+			$('#confirmDeleteBlogButton').click(function(e) {
+				e.preventDefault();
+				page.deleteModel();
+			});
+		}
+		else
+		{
+			// no point in initializing the click handlers if we don't show the button
+			$('#deleteBlogButtonContainer').hide();
+		}
+	},
+
+	/**
+	 * update the model that is currently displayed in the dialog
+	 */
+	updateModel: function()
+	{
+		// reset any previous errors
+		$('#modelAlert').html('');
+		$('.control-group').removeClass('error');
+		$('.help-inline').html('');
+		// if this is new then on success we need to add it to the collection
+		var isNew = page.blog.isNew();
+		app.showProgress('modelLoader');
+		page.blog.save({
+
+			'titleBlog': $('input#titleBlog').val(),
+			'bodyBlog': $('textarea#bodyBlog').val()
+		}, {
+			wait: true,
+			success: function(){
+				$('#blogDetailDialog').modal('hide');
+				setTimeout("app.appendAlert('Fue exitosamente " + (isNew ? "Insertado" : "Actualizado") + "','alert-success',3000,'collectionAlert')",500);
+				app.hideProgress('modelLoader');
+				// if the collection was initally new then we need to add it to the collection now
+				if (isNew) { page.blogs.add(page.blog) }
+				if (model.reloadCollectionOnModelUpdate)
+				{
+					// re-fetch and render the collection after the model has been updated
+					page.fetchBlogs(page.fetchParams,true);
+				}
+		},
+			error: function(model,response,scope){
+				app.hideProgress('modelLoader');
+				app.appendAlert(app.getErrorMessage(response), 'alert-error',0,'modelAlert');
+				try {
+					var json = $.parseJSON(response.responseText);
+
+					if (json.errors)
+					{
+						$.each(json.errors, function(key, value) {
+							$('#'+key+'InputContainer').addClass('error');
+							$('#'+key+'InputContainer span.help-inline').html(value);
+						});
+					}
+				} catch (e2) {
+                                            if (console) console.log('Error de an&aacute;lisis de respuesta en el servidor: '+e2.message);
+				}
+			}
+		});
+	},
+	/**
+	 * delete the model that is currently displayed in the dialog
+	 */
+	deleteModel: function()
+	{
+		// reset any previous errors
+		$('#modelAlert').html('');
+		app.showProgress('modelLoader');
+		page.blog.destroy({
+			wait: true,
+			success: function(){
+				$('#blogDetailDialog').modal('hide');
+				setTimeout("app.appendAlert('El registro se ha eliminado con &Eacute;xito','alert-success',3000,'collectionAlert')",500);
+				app.hideProgress('modelLoader');
+
+				if (model.reloadCollectionOnModelUpdate)
+				{
+					// re-fetch and render the collection after the model has been updated
+					page.fetchBlogs(page.fetchParams,true);
+				}
+			},
+			error: function(model,response,scope){
+				app.appendAlert(app.getErrorMessage(response), 'alert-error',0,'modelAlert');
+				app.hideProgress('modelLoader');
+			}
+		});
+	}
+};

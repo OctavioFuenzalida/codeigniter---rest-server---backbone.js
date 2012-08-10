@@ -1,0 +1,373 @@
+
+<!DOCTYPE html>
+
+
+<html>
+	<head>
+		<meta charset="utf-8">
+	    
+	    <title>FTP Class &mdash; CodeIgniter 3.0-dev documentation</title>
+
+	    <link rel="stylesheet" href="../_static/asset/css/common.css" type="text/css" />
+	    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+	    <script type="text/javascript">
+	      var DOCUMENTATION_OPTIONS = {
+	        URL_ROOT:    '../',
+	        VERSION:     '3.0-dev',
+	        COLLAPSE_INDEX: false,
+	        FILE_SUFFIX: '.html',
+	        HAS_SOURCE:  true
+	      };
+	    </script>
+	    <script type="text/javascript" src="../_static/jquery.js"></script>
+	    <script type="text/javascript" src="../_static/underscore.js"></script>
+	    <script type="text/javascript" src="../_static/doctools.js"></script>
+	    <link rel="top" title="CodeIgniter 3.0-dev documentation" href="../index.html" />
+	    <link rel="up" title="Libraries" href="index.html" />
+	    <link rel="next" title="Image Manipulation Class" href="image_lib.html" />
+	    <link rel="prev" title="Form Validation" href="form_validation.html" /> 
+	</head>
+	<body>
+		<div id="table-contents">
+			<div class="toctree-wrapper compound">
+			<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">General Topics</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Libraries</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">Benchmarking Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">Caching Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">Calendaring Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cart.html">Shopping Cart Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Config Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Email Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">Encryption Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">File Uploading Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">Form Validation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">FTP Class</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">Image Manipulation Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">Input Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Javascript Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language.html">Language Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">Loader Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">Migrations Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">Output Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">Pagination Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">Template Parser Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Security Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Session Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">HTML Table Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">Trackback Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">Typography Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">Unit Testing Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">URI Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">User Agent Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">XML-RPC and XML-RPC Server Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zip.html">Zip Encoding Class</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to CodeIgniter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DCO.html">Developer&#8217;s Certificate of Origin 1.1</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../DCO.html">Developer&#8217;s Certificate of Origin 1.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">Open Software License (&#8220;OSL&#8221;) v 3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license_afl.html">Academic Free License (&#8220;AFL&#8221;) v 3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/requirements.html">Server Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">Welcome to CodeIgniter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">General Topics</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Libraries</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="benchmark.html">Benchmarking Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="caching.html">Caching Driver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="calendar.html">Calendaring Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cart.html">Shopping Cart Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config.html">Config Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email.html">Email Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="encryption.html">Encryption Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_uploading.html">File Uploading Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_validation.html">Form Validation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">FTP Class</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="image_lib.html">Image Manipulation Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">Input Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="javascript.html">Javascript Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language.html">Language Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="loader.html">Loader Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">Migrations Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">Output Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pagination.html">Pagination Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parser.html">Template Parser Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security.html">Security Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sessions.html">Session Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="table.html">HTML Table Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trackback.html">Trackback Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="typography.html">Typography Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="unit_testing.html">Unit Testing Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="uri.html">URI Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_agent.html">User Agent Class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xmlrpc.html">XML-RPC and XML-RPC Server Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zip.html">Zip Encoding Class</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../helpers/index.html">Helpers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">The Database Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/index.html">Writing CodeIgniter Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/quick_reference.html">Quick Reference Chart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/credits.html">Credits</a></li>
+</ul>
+
+			</div>
+		</div>
+
+		<div id="brand" class="ci">
+			<a href="http://codeigniter.com/"><img src="../_static/asset/img/ci-logo.gif" alt="CodeIgniter"></a>
+			<p>3.0-dev User Guide</p>
+		</div><!-- /#brand -->
+
+		<div id="header">
+			<form method="get" action="http://www.google.com/search">
+				<fieldset>
+					<input type="text" name="q" id="q" value="">
+					<input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />
+					<input class="grades" type="submit" value="search">
+				</fieldset>
+			</form>
+			<ul>
+				<li><a href="../index.html">User Guide Home</a>&nbsp;&nbsp; &rsaquo;</li>
+				<li><a href="index.html" accesskey="U">Libraries</a>&nbsp;&nbsp;  &rsaquo;</li>
+				<li><strong>FTP Class</strong></li>
+			</ul>
+		</div><!-- /#header -->
+
+		<div class="section" id="content">
+			<div class="section" id="ftp-class">
+<h1>FTP Class<a class="headerlink" href="#ftp-class" title="Permalink to this headline">¶</a></h1>
+<p>CodeIgniter&#8217;s FTP Class permits files to be transfered to a remote
+server. Remote files can also be moved, renamed, and deleted. The FTP
+class also includes a &#8220;mirroring&#8221; function that permits an entire local
+directory to be recreated remotely via FTP.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">SFTP and SSL FTP protocols are not supported, only standard
+FTP.</p>
+</div>
+<div class="section" id="initializing-the-class">
+<h2>Initializing the Class<a class="headerlink" href="#initializing-the-class" title="Permalink to this headline">¶</a></h2>
+<p>Like most other classes in CodeIgniter, the FTP class is initialized in
+your controller using the $this-&gt;load-&gt;library function:</p>
+<div class="highlight-ci"><pre>$this-&gt;load-&gt;library('ftp');</pre>
+</div>
+<p>Once loaded, the FTP object will be available using: $this-&gt;ftp</p>
+<div class="section" id="usage-examples">
+<h3>Usage Examples<a class="headerlink" href="#usage-examples" title="Permalink to this headline">¶</a></h3>
+<p>In this example a connection is opened to the FTP server, and a local
+file is read and uploaded in ASCII mode. The file permissions are set to
+755.</p>
+<div class="highlight-ci"><pre>$this-&gt;load-&gt;library('ftp');
+
+$config['hostname'] = 'ftp.example.com';
+$config['username'] = 'your-username';
+$config['password'] = 'your-password';
+$config['debug']        = TRUE;
+
+$this-&gt;ftp-&gt;connect($config);
+
+$this-&gt;ftp-&gt;upload('/local/path/to/myfile.html', '/public_html/myfile.html', 'ascii', 0775);
+
+$this-&gt;ftp-&gt;close();</pre>
+</div>
+<p>In this example a list of files is retrieved from the server.</p>
+<div class="highlight-ci"><pre>$this-&gt;load-&gt;library('ftp');
+
+$config['hostname'] = 'ftp.example.com';
+$config['username'] = 'your-username';
+$config['password'] = 'your-password';
+$config['debug']        = TRUE;
+
+$this-&gt;ftp-&gt;connect($config);
+
+$list = $this-&gt;ftp-&gt;list_files('/public_html/');
+
+print_r($list);
+
+$this-&gt;ftp-&gt;close();</pre>
+</div>
+<p>In this example a local directory is mirrored on the server.</p>
+<div class="highlight-ci"><pre>$this-&gt;load-&gt;library('ftp');
+
+$config['hostname'] = 'ftp.example.com';
+$config['username'] = 'your-username';
+$config['password'] = 'your-password';
+$config['debug']        = TRUE;
+
+$this-&gt;ftp-&gt;connect($config);
+
+$this-&gt;ftp-&gt;mirror('/path/to/myfolder/', '/public_html/myfolder/');
+
+$this-&gt;ftp-&gt;close();</pre>
+</div>
+</div>
+</div>
+<div class="section" id="function-reference">
+<h2>Function Reference<a class="headerlink" href="#function-reference" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="this-ftp-connect">
+<h3>$this-&gt;ftp-&gt;connect()<a class="headerlink" href="#this-ftp-connect" title="Permalink to this headline">¶</a></h3>
+<p>Connects and logs into to the FTP server. Connection preferences are set
+by passing an array to the function, or you can store them in a config
+file.</p>
+<p>Here is an example showing how you set preferences manually:</p>
+<div class="highlight-ci"><pre>$this-&gt;load-&gt;library('ftp');
+
+$config['hostname'] = 'ftp.example.com';
+$config['username'] = 'your-username';
+$config['password'] = 'your-password';
+$config['port']     = 21;
+$config['passive']  = FALSE;
+$config['debug']    = TRUE;
+
+$this-&gt;ftp-&gt;connect($config);</pre>
+</div>
+<div class="section" id="setting-ftp-preferences-in-a-config-file">
+<h4>Setting FTP Preferences in a Config File<a class="headerlink" href="#setting-ftp-preferences-in-a-config-file" title="Permalink to this headline">¶</a></h4>
+<p>If you prefer you can store your FTP preferences in a config file.
+Simply create a new file called the ftp.php, add the $config array in
+that file. Then save the file at config/ftp.php and it will be used
+automatically.</p>
+</div>
+<div class="section" id="available-connection-options">
+<h4>Available connection options<a class="headerlink" href="#available-connection-options" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><strong>hostname</strong> - the FTP hostname. Usually something like:
+ftp.example.com</li>
+<li><strong>username</strong> - the FTP username.</li>
+<li><strong>password</strong> - the FTP password.</li>
+<li><strong>port</strong> - The port number. Set to 21 by default.</li>
+<li><strong>debug</strong> - TRUE/FALSE (boolean). Whether to enable debugging to
+display error messages.</li>
+<li><strong>passive</strong> - TRUE/FALSE (boolean). Whether to use passive mode.
+Passive is set automatically by default.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="this-ftp-upload">
+<h3>$this-&gt;ftp-&gt;upload()<a class="headerlink" href="#this-ftp-upload" title="Permalink to this headline">¶</a></h3>
+<p>Uploads a file to your server. You must supply the local path and the
+remote path, and you can optionally set the mode and permissions.
+Example:</p>
+<div class="highlight-ci"><pre>$this-&gt;ftp-&gt;upload('/local/path/to/myfile.html', '/public_html/myfile.html', 'ascii', 0775);</pre>
+</div>
+<p><strong>Mode options are:</strong> ascii, binary, and auto (the default). If auto is
+used it will base the mode on the file extension of the source file.</p>
+<p>If set, permissions have to be passed as an octal value.</p>
+</div>
+<div class="section" id="this-ftp-download">
+<h3>$this-&gt;ftp-&gt;download()<a class="headerlink" href="#this-ftp-download" title="Permalink to this headline">¶</a></h3>
+<p>Downloads a file from your server. You must supply the remote path and
+the local path, and you can optionally set the mode. Example:</p>
+<div class="highlight-ci"><pre>$this-&gt;ftp-&gt;download('/public_html/myfile.html', '/local/path/to/myfile.html', 'ascii');</pre>
+</div>
+<p><strong>Mode options are:</strong> ascii, binary, and auto (the default). If auto is
+used it will base the mode on the file extension of the source file.</p>
+<p>Returns FALSE if the download does not execute successfully (including
+if PHP does not have permission to write the local file)</p>
+</div>
+<div class="section" id="this-ftp-rename">
+<h3>$this-&gt;ftp-&gt;rename()<a class="headerlink" href="#this-ftp-rename" title="Permalink to this headline">¶</a></h3>
+<p>Permits you to rename a file. Supply the source file name/path and the
+new file name/path.</p>
+<div class="highlight-ci"><pre>// Renames green.html to blue.html
+$this-&gt;ftp-&gt;rename('/public_html/foo/green.html', '/public_html/foo/blue.html');</pre>
+</div>
+</div>
+<div class="section" id="this-ftp-move">
+<h3>$this-&gt;ftp-&gt;move()<a class="headerlink" href="#this-ftp-move" title="Permalink to this headline">¶</a></h3>
+<p>Lets you move a file. Supply the source and destination paths:</p>
+<div class="highlight-ci"><pre>// Moves blog.html from "joe" to "fred"
+$this-&gt;ftp-&gt;move('/public_html/joe/blog.html', '/public_html/fred/blog.html');</pre>
+</div>
+<p>Note: if the destination file name is different the file will be
+renamed.</p>
+</div>
+<div class="section" id="this-ftp-delete-file">
+<h3>$this-&gt;ftp-&gt;delete_file()<a class="headerlink" href="#this-ftp-delete-file" title="Permalink to this headline">¶</a></h3>
+<p>Lets you delete a file. Supply the source path with the file name.</p>
+<div class="highlight-ci"><pre>$this-&gt;ftp-&gt;delete_file('/public_html/joe/blog.html');</pre>
+</div>
+</div>
+<div class="section" id="this-ftp-delete-dir">
+<h3>$this-&gt;ftp-&gt;delete_dir()<a class="headerlink" href="#this-ftp-delete-dir" title="Permalink to this headline">¶</a></h3>
+<p>Lets you delete a directory and everything it contains. Supply the
+source path to the directory with a trailing slash.</p>
+<p><strong>Important</strong> Be VERY careful with this function. It will recursively
+delete <strong>everything</strong> within the supplied path, including sub-folders
+and all files. Make absolutely sure your path is correct. Try using the
+list_files() function first to verify that your path is correct.</p>
+<div class="highlight-ci"><pre>$this-&gt;ftp-&gt;delete_dir('/public_html/path/to/folder/');</pre>
+</div>
+</div>
+<div class="section" id="this-ftp-list-files">
+<h3>$this-&gt;ftp-&gt;list_files()<a class="headerlink" href="#this-ftp-list-files" title="Permalink to this headline">¶</a></h3>
+<p>Permits you to retrieve a list of files on your server returned as an
+array. You must supply the path to the desired directory.</p>
+<div class="highlight-ci"><pre>$list = $this-&gt;ftp-&gt;list_files('/public_html/');
+
+print_r($list);</pre>
+</div>
+</div>
+<div class="section" id="this-ftp-mirror">
+<h3>$this-&gt;ftp-&gt;mirror()<a class="headerlink" href="#this-ftp-mirror" title="Permalink to this headline">¶</a></h3>
+<p>Recursively reads a local folder and everything it contains (including
+sub-folders) and creates a mirror via FTP based on it. Whatever the
+directory structure of the original file path will be recreated on the
+server. You must supply a source path and a destination path:</p>
+<div class="highlight-ci"><pre>$this-&gt;ftp-&gt;mirror('/path/to/myfolder/', '/public_html/myfolder/');</pre>
+</div>
+</div>
+<div class="section" id="this-ftp-mkdir">
+<h3>$this-&gt;ftp-&gt;mkdir()<a class="headerlink" href="#this-ftp-mkdir" title="Permalink to this headline">¶</a></h3>
+<p>Lets you create a directory on your server. Supply the path ending in
+the folder name you wish to create, with a trailing slash. Permissions
+can be set by passed an octal value in the second parameter (if you are
+running PHP 5).</p>
+<div class="highlight-ci"><pre>// Creates a folder named "bar"
+$this-&gt;ftp-&gt;mkdir('/public_html/foo/bar/', DIR_WRITE_MODE);</pre>
+</div>
+</div>
+<div class="section" id="this-ftp-chmod">
+<h3>$this-&gt;ftp-&gt;chmod()<a class="headerlink" href="#this-ftp-chmod" title="Permalink to this headline">¶</a></h3>
+<p>Permits you to set file permissions. Supply the path to the file or
+folder you wish to alter permissions on:</p>
+<div class="highlight-ci"><pre>// Chmod "bar" to 777
+$this-&gt;ftp-&gt;chmod('/public_html/foo/bar/', DIR_WRITE_MODE);</pre>
+</div>
+</div>
+<div class="section" id="this-ftp-close">
+<h3>$this-&gt;ftp-&gt;close();<a class="headerlink" href="#this-ftp-close" title="Permalink to this headline">¶</a></h3>
+<p>Closes the connection to your server. It&#8217;s recommended that you use this
+when you are finished uploading.</p>
+</div>
+</div>
+</div>
+
+		</div>
+
+		<!-- {user_guide_comments} -->
+					
+		<div id="footer">
+			<p class="top"><a href="#header" title="Return to top">Return to top</a></p>
+			<p><a href="">CodeIgniter</a> &ndash; Copyright &copy; 2012, EllisLab, Inc.</a></p>
+		</div><!-- /#footer -->
+	</body>
+</html>

@@ -1,0 +1,291 @@
+
+<!DOCTYPE html>
+
+
+<html>
+	<head>
+		<meta charset="utf-8">
+	    
+	    <title>Text Helper &mdash; CodeIgniter 3.0-dev documentation</title>
+
+	    <link rel="stylesheet" href="../_static/asset/css/common.css" type="text/css" />
+	    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+	    <script type="text/javascript">
+	      var DOCUMENTATION_OPTIONS = {
+	        URL_ROOT:    '../',
+	        VERSION:     '3.0-dev',
+	        COLLAPSE_INDEX: false,
+	        FILE_SUFFIX: '.html',
+	        HAS_SOURCE:  true
+	      };
+	    </script>
+	    <script type="text/javascript" src="../_static/jquery.js"></script>
+	    <script type="text/javascript" src="../_static/underscore.js"></script>
+	    <script type="text/javascript" src="../_static/doctools.js"></script>
+	    <link rel="top" title="CodeIgniter 3.0-dev documentation" href="../index.html" />
+	    <link rel="up" title="Helpers" href="index.html" />
+	    <link rel="next" title="Typography Helper" href="typography_helper.html" />
+	    <link rel="prev" title="String Helper" href="string_helper.html" /> 
+	</head>
+	<body>
+		<div id="table-contents">
+			<div class="toctree-wrapper compound">
+			<ul>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">General Topics</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Libraries</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Helpers</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="array_helper.html">Array Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="captcha_helper.html">CAPTCHA Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookie_helper.html">Cookie Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="date_helper.html">Date Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directory_helper.html">Directory Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download_helper.html">Download Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email_helper.html">Email Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_helper.html">File Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_helper.html">Form Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html_helper.html">HTML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inflector_helper.html">Inflector Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language_helper.html">Language Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="number_helper.html">Number Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="path_helper.html">Path Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_helper.html">Security Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smiley_helper.html">Smiley Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="string_helper.html">String Helper</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Text Helper</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="typography_helper.html">Typography Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="url_helper.html">URL Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xml_helper.html">XML Helper</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/index.html">Contributing to CodeIgniter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../DCO.html">Developer&#8217;s Certificate of Origin 1.1</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../DCO.html">Developer&#8217;s Certificate of Origin 1.1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Change Log</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">Open Software License (&#8220;OSL&#8221;) v 3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license_afl.html">Academic Free License (&#8220;AFL&#8221;) v 3.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../overview/index.html">CodeIgniter Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/requirements.html">Server Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/welcome.html">Welcome to CodeIgniter</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/index.html">General Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/index.html">Libraries</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Helpers</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="array_helper.html">Array Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="captcha_helper.html">CAPTCHA Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cookie_helper.html">Cookie Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="date_helper.html">Date Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directory_helper.html">Directory Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="download_helper.html">Download Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="email_helper.html">Email Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_helper.html">File Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="form_helper.html">Form Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="html_helper.html">HTML Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inflector_helper.html">Inflector Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="language_helper.html">Language Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="number_helper.html">Number Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="path_helper.html">Path Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="security_helper.html">Security Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="smiley_helper.html">Smiley Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="string_helper.html">String Helper</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="">Text Helper</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="typography_helper.html">Typography Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="url_helper.html">URL Helper</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xml_helper.html">XML Helper</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../database/index.html">The Database Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../documentation/index.html">Writing CodeIgniter Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/quick_reference.html">Quick Reference Chart</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../general/credits.html">Credits</a></li>
+</ul>
+
+			</div>
+		</div>
+
+		<div id="brand" class="ci">
+			<a href="http://codeigniter.com/"><img src="../_static/asset/img/ci-logo.gif" alt="CodeIgniter"></a>
+			<p>3.0-dev User Guide</p>
+		</div><!-- /#brand -->
+
+		<div id="header">
+			<form method="get" action="http://www.google.com/search">
+				<fieldset>
+					<input type="text" name="q" id="q" value="">
+					<input type="hidden" name="as_sitesearch" id="as_sitesearch" value="codeigniter.com/user_guide/" />
+					<input class="grades" type="submit" value="search">
+				</fieldset>
+			</form>
+			<ul>
+				<li><a href="../index.html">User Guide Home</a>&nbsp;&nbsp; &rsaquo;</li>
+				<li><a href="index.html" accesskey="U">Helpers</a>&nbsp;&nbsp;  &rsaquo;</li>
+				<li><strong>Text Helper</strong></li>
+			</ul>
+		</div><!-- /#header -->
+
+		<div class="section" id="content">
+			<div class="section" id="text-helper">
+<h1><a class="toc-backref" href="#id2">Text Helper</a><a class="headerlink" href="#text-helper" title="Permalink to this headline">¶</a></h1>
+<p>The Text Helper file contains functions that assist in working with
+text.</p>
+<div class="contents topic" id="page-contents">
+<p class="topic-title first">Page Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#text-helper" id="id2">Text Helper</a><ul>
+<li><a class="reference internal" href="#loading-this-helper" id="id3">Loading this Helper</a></li>
+<li><a class="reference internal" href="#word-limiter" id="id4">word_limiter()</a></li>
+<li><a class="reference internal" href="#character-limiter" id="id5">character_limiter()</a></li>
+<li><a class="reference internal" href="#ascii-to-entities" id="id6">ascii_to_entities()</a></li>
+<li><a class="reference internal" href="#entities-to-ascii" id="id7">entities_to_ascii()</a></li>
+<li><a class="reference internal" href="#convert-accented-characters" id="id8">convert_accented_characters()</a></li>
+<li><a class="reference internal" href="#word-censor" id="id9">word_censor()</a></li>
+<li><a class="reference internal" href="#highlight-code" id="id10">highlight_code()</a></li>
+<li><a class="reference internal" href="#highlight-phrase" id="id11">highlight_phrase()</a></li>
+<li><a class="reference internal" href="#word-wrap" id="id12">word_wrap()</a></li>
+<li><a class="reference internal" href="#ellipsize" id="id13">ellipsize()</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="loading-this-helper">
+<h2><a class="toc-backref" href="#id3">Loading this Helper</a><a class="headerlink" href="#loading-this-helper" title="Permalink to this headline">¶</a></h2>
+<p>This helper is loaded using the following code</p>
+<div class="highlight-ci"><pre>$this-&gt;load-&gt;helper('text');</pre>
+</div>
+<p>The following functions are available:</p>
+</div>
+<div class="section" id="word-limiter">
+<h2><a class="toc-backref" href="#id4">word_limiter()</a><a class="headerlink" href="#word-limiter" title="Permalink to this headline">¶</a></h2>
+<p>Truncates a string to the number of <strong>words</strong> specified. Example:</p>
+<div class="highlight-ci"><pre>$string = "Here is a nice text string consisting of eleven words.";
+$string = word_limiter($string, 4);
+// Returns:  Here is a nice…</pre>
+</div>
+<p>The third parameter is an optional suffix added to the string. By
+default it adds an ellipsis.</p>
+</div>
+<div class="section" id="character-limiter">
+<h2><a class="toc-backref" href="#id5">character_limiter()</a><a class="headerlink" href="#character-limiter" title="Permalink to this headline">¶</a></h2>
+<p>Truncates a string to the number of <strong>characters</strong> specified. It
+maintains the integrity of words so the character count may be slightly
+more or less then what you specify. Example</p>
+<div class="highlight-ci"><pre>$string = "Here is a nice text string consisting of eleven words.";
+$string = character_limiter($string, 20);
+// Returns:  Here is a nice text string…</pre>
+</div>
+<p>The third parameter is an optional suffix added to the string, if
+undeclared this helper uses an ellipsis.</p>
+<p><strong>Note:</strong> If you need to truncate to an exact number of characters please see
+the <a class="reference internal" href="#ellipsize"><em>ellipsize()</em></a> function below.</p>
+</div>
+<div class="section" id="ascii-to-entities">
+<h2><a class="toc-backref" href="#id6">ascii_to_entities()</a><a class="headerlink" href="#ascii-to-entities" title="Permalink to this headline">¶</a></h2>
+<p>Converts ASCII values to character entities, including high ASCII and MS
+Word characters that can cause problems when used in a web page, so that
+they can be shown consistently regardless of browser settings or stored
+reliably in a database. There is some dependence on your server&#8217;s
+supported character sets, so it may not be 100% reliable in all cases,
+but for the most part it should correctly identify characters outside
+the normal range (like accented characters). Example</p>
+<div class="highlight-ci"><pre>$string = ascii_to_entities($string);</pre>
+</div>
+</div>
+<div class="section" id="entities-to-ascii">
+<h2><a class="toc-backref" href="#id7">entities_to_ascii()</a><a class="headerlink" href="#entities-to-ascii" title="Permalink to this headline">¶</a></h2>
+<p>This function does the opposite of the previous one; it turns character
+entities back into ASCII.</p>
+</div>
+<div class="section" id="convert-accented-characters">
+<h2><a class="toc-backref" href="#id8">convert_accented_characters()</a><a class="headerlink" href="#convert-accented-characters" title="Permalink to this headline">¶</a></h2>
+<p>Transliterates high ASCII characters to low ASCII equivalents, useful
+when non-English characters need to be used where only standard ASCII
+characters are safely used, for instance, in URLs.</p>
+<div class="highlight-ci"><pre>$string = convert_accented_characters($string);</pre>
+</div>
+<p>This function uses a companion config file
+<cite>application/config/foreign_chars.php</cite> to define the to and from array
+for transliteration.</p>
+</div>
+<div class="section" id="word-censor">
+<h2><a class="toc-backref" href="#id9">word_censor()</a><a class="headerlink" href="#word-censor" title="Permalink to this headline">¶</a></h2>
+<p>Enables you to censor words within a text string. The first parameter
+will contain the original string. The second will contain an array of
+words which you disallow. The third (optional) parameter can contain a
+replacement value for the words. If not specified they are replaced with
+pound signs: ####. Example</p>
+<div class="highlight-ci"><pre>$disallowed = array('darn', 'shucks', 'golly', 'phooey');
+$string = word_censor($string, $disallowed, 'Beep!');</pre>
+</div>
+</div>
+<div class="section" id="highlight-code">
+<h2><a class="toc-backref" href="#id10">highlight_code()</a><a class="headerlink" href="#highlight-code" title="Permalink to this headline">¶</a></h2>
+<p>Colorizes a string of code (PHP, HTML, etc.). Example:</p>
+<div class="highlight-ci"><pre>$string = highlight_code($string);</pre>
+</div>
+<p>The function uses PHP&#8217;s highlight_string() function, so the colors used
+are the ones specified in your php.ini file.</p>
+</div>
+<div class="section" id="highlight-phrase">
+<h2><a class="toc-backref" href="#id11">highlight_phrase()</a><a class="headerlink" href="#highlight-phrase" title="Permalink to this headline">¶</a></h2>
+<p>Will highlight a phrase within a text string. The first parameter will
+contain the original string, the second will contain the phrase you wish
+to highlight. The third and fourth parameters will contain the
+opening/closing HTML tags you would like the phrase wrapped in. Example</p>
+<div class="highlight-ci"><pre>$string = "Here is a nice text string about nothing in particular.";
+$string = highlight_phrase($string, "nice text", '&lt;span style="color:#990000"&gt;', '&lt;/span&gt;');</pre>
+</div>
+<p>The above text returns:</p>
+<p>Here is a nice text string about nothing in particular.</p>
+</div>
+<div class="section" id="word-wrap">
+<h2><a class="toc-backref" href="#id12">word_wrap()</a><a class="headerlink" href="#word-wrap" title="Permalink to this headline">¶</a></h2>
+<p>Wraps text at the specified <strong>character</strong> count while maintaining
+complete words. Example</p>
+<div class="highlight-ci"><pre>$string = "Here is a simple string of text that will help us demonstrate this function.";
+echo word_wrap($string, 25);
+
+// Would produce:  Here is a simple string of text that will help us demonstrate this function</pre>
+</div>
+</div>
+<div class="section" id="ellipsize">
+<span id="id1"></span><h2><a class="toc-backref" href="#id13">ellipsize()</a><a class="headerlink" href="#ellipsize" title="Permalink to this headline">¶</a></h2>
+<p>This function will strip tags from a string, split it at a defined
+maximum length, and insert an ellipsis.</p>
+<p>The first parameter is the string to ellipsize, the second is the number
+of characters in the final string. The third parameter is where in the
+string the ellipsis should appear from 0 - 1, left to right. For
+example. a value of 1 will place the ellipsis at the right of the
+string, .5 in the middle, and 0 at the left.</p>
+<p>An optional forth parameter is the kind of ellipsis. By default,
+&amp;hellip; will be inserted.</p>
+<div class="highlight-ci"><pre>$str = 'this_string_is_entirely_too_long_and_might_break_my_design.jpg';
+echo ellipsize($str, 32, .5);</pre>
+</div>
+<p>Produces:</p>
+<div class="highlight-ci"><pre>this_string_is_e&amp;hellip;ak_my_design.jpg</pre>
+</div>
+</div>
+</div>
+
+		</div>
+
+		<!-- {user_guide_comments} -->
+					
+		<div id="footer">
+			<p class="top"><a href="#header" title="Return to top">Return to top</a></p>
+			<p><a href="">CodeIgniter</a> &ndash; Copyright &copy; 2012, EllisLab, Inc.</a></p>
+		</div><!-- /#footer -->
+	</body>
+</html>
